@@ -1,19 +1,17 @@
 extends layout
 
 block body
-  div(ng-controller='AppCtrl')
-    h2 Hello {{name}}
-    ul.menu
+  div
+    h2 My Blog
+    ul
       li
-        a(href='view1') view1
+        a(href='/') Home
       li
-        a(href='view2') view2
+        a(href='/addPost') Add a new post
+      li(ng-show='!user')
+        a(href='/login') Login
 
     div(ng-view)
-
-    div
-      | Angular seed app: v
-      span(app-version)
 
   script(src='js/lib/angular/angular.js')
   script(src='js/app.js')
@@ -21,3 +19,7 @@ block body
   script(src='js/controllers.js')
   script(src='js/filters.js')
   script(src='js/directives.js')
+  script(type='text/javascript', src='js/lib/bootstrap/jquery.min.js')
+  script(type='text/javascript', src='js/lib/bootstrap/js/bootstrap.min.js')
+  link(rel='stylesheet', href='js/lib/bootstrap/css/bootstrap.min.css')
+

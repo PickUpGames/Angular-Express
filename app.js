@@ -6,15 +6,15 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
-  errorHandler = require('error-handler'),
   morgan = require('morgan'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
   path = require('path');
 
-var app = module.exports = express();
+var expressSession = require('express-session');
 
+var app = module.exports = express();
 
 /**
  * Configuration
@@ -28,13 +28,13 @@ app.use(morgan('dev'));
 app.use(bodyParser());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use( expressSession({
+  secret: 'somesecretrandomstring'
+}));
+
 
 var env = process.env.NODE_ENV || 'development';
 
-// development only
-if (env === 'development') {
-  app.use(express.errorHandler());
-}
 
 // production only
 if (env === 'production') {
@@ -42,16 +42,24 @@ if (env === 'production') {
 }
 
 
-/**
- * Routes
- */
+// Routes
 
-// serve index and view partials
 app.get('/', routes.index);
-app.get('/partials/:name', routes.partials);
+app.get('/partials/:name', routes.partials);  //angular routes to this and routes/index renders the file
+app.get('/user/login', routes.user);
 
 // JSON API
-app.get('/api/name', api.name);
+
+app.get('/api/posts', api.posts); //return all posts from db
+
+//same route but different function calls to perform actions on post
+app.get('/api/post/:id', api.post); //return specific post from db
+app.post('/api/post', api.addPost); //add new post to db
+app.put('/api/post/:id', api.editPost);  //edit existing post in db
+app.delete('/api/post/:id', api.deletePost); //remove post from db
+
+app.post('/api/login', api.tryLogin);
+
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
