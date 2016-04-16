@@ -21,7 +21,8 @@ var app = module.exports = express();
  */
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+var port = process.env.PORT || 8080;
+app.set('port', port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(morgan('dev'));
@@ -72,6 +73,9 @@ app.get('*', routes.index);
  * Start Server
  */
 
-http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
-});
+// http.createServer(app).listen(app.get('port'), function () {
+//   console.log('Express server listening on port ' + app.get('port'));
+// });
+
+app.listen(port);
+console.log('Magic happens on port ' + port);
