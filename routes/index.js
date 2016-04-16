@@ -12,7 +12,10 @@ exports.partials = function (req, res) {
   res.render('partials/' + name);
 };
 
-exports.user =function (req, res){
-	//var action = req.params.action;
+exports.login =function (req, res){
 	res.render('user/login');
+};
+
+exports.register =function (req, res){
+	res.render('user/register');
 };

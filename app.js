@@ -46,7 +46,8 @@ if (env === 'production') {
 
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);  //angular routes to this and routes/index renders the file
-app.get('/user/login', routes.user);
+app.get('/user/login', routes.login);
+app.get('/user/register', routes.register);
 
 // JSON API
 
@@ -58,8 +59,10 @@ app.post('/api/post', api.addPost); //add new post to db
 app.put('/api/post/:id', api.editPost);  //edit existing post in db
 app.delete('/api/post/:id', api.deletePost); //remove post from db
 
-app.post('/api/login', api.tryLogin);
 
+app.post('/api/login', api.login);
+app.post('/api/register', api.register)
+app.delete('/api/clear', api.clear)
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

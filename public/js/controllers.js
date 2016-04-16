@@ -6,6 +6,18 @@ function LoginCtrl($scope, $http, $location) {
       function(res) {$location.path('/');},
       function(res) {$scope.error= res.data.error;});
   };
+
+  $scope.register = function () {
+    $http.post('/api/register', $scope.form).then(
+      function(res) {$location.path('/');},
+      function(res) {$scope.error= res.data.error;})
+  };
+
+  $scope.clear = function () {
+    $http.delete('/api/clear').then(
+      function(res) {$location.path('/');}
+    )
+  };
 }
 
 

@@ -20,6 +20,35 @@ function authenticateUser(username, password, callback){
   });
 }
 
+//createUser takes in form data and adds a user to the DB 
+function createUser(newUser, callback){
+  if(newUser.password != newUser.passwordConfirmation){
+    var err = 'Passwords do not match';
+    callback(err);
+  }
+  else {
+    var query = {username: newUser.username};
+
+    User.findOne(query, function(err,user){
+      if(user) {
+        err = 'The username you entered is already in use.';
+        callback(err);
+      }
+      else {
+        var userData = {
+          username: newUser.username,
+          name: newUser.name,
+          password: newUser.password,
+          birthday: newUser.birthday
+        };
+        var newU = new User(userData);
+        newU.save(function(err,user){
+          callback(err,user);
+        });
+      }
+    });
+  }
+}
 
 
 
@@ -70,8 +99,8 @@ exports.addPost = function (req, res) {
 };
 
 
-exports.tryLogin = function(req, res){
-  console.log("TRIED TO LOGIN | _id=" + req.body.username + " _pwd=" + req.body.password);
+exports.login = function(req, res){
+  // console.log("TRIED TO LOGIN | _id=" + req.body.username + " _pwd=" + req.body.password);
   var username = req.body.username;
   var password = req.body.password;
   
@@ -80,15 +109,33 @@ exports.tryLogin = function(req, res){
       // This way subsequent requests will know the user is logged in.
       req.session.username = user.username;
       res.json(true);
-      console.log("GOT IN | _id=" +username);
+      // console.log("GOT IN | _id=" +username);
     } else {
-      console.log("NOPE= " + err);
+      // console.log("NOPE= " + err);
       res.status(400).send({ error: err });
-      //res.render('partials/addPost', {error: err});
     }
   });
 
 };
+
+
+// This check credentials where req.body holds all the form data 
+exports.register = function(req, res){
+ console.log("REGISTER | _id=" + req.body.username + " _pwd=" + req.body.password);
+  createUser(req.body, function(err,user){
+    if(err){
+      res.status(400).send({ error: err });
+      console.log("ERROR | " + err);
+    }
+    else {
+      console.log("REGISTER | OK");
+      req.session.username = user.username;
+      res.json(true);
+    }
+
+  });
+};
+
 
 // PUT
 exports.editPost = function (req, res) {
@@ -116,4 +163,10 @@ exports.deletePost = function (req, res) {
   } else {
     res.json(false);
   }
+};
+
+exports.clear = function (req, res) {
+//  console.log("I DID MY JOB");
+    User.remove({}, true);
+    res.json(true);
 };
