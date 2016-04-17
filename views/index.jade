@@ -1,15 +1,20 @@
 extends layout
 
 block body
-  div
+  div(ng-init="user = #{user}")
     h2 My Blog
     ul
       li
         a(href='/') Home
       li
         a(href='/addPost') Add a new post
-      li(ng-show='!user')
+      li(ng-show="!user")
         a(href='/login') Login
+      li(ng-show="user")
+        a Logged in as 
+          u {{user}}
+      li(ng-show="user")
+        a(href='/logout') Logout
 
 
     div(ng-view)

@@ -10,9 +10,13 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
         templateUrl: 'user/login',
         controller: LoginCtrl
       }).
+      when('/logout', {
+        templateUrl: 'partials/index',
+        controller: LogoutCtrl
+      }).
       when('/register', {
         templateUrl: 'user/register',
-        controller: LoginCtrl
+        controller: RegisterCtrl
       }).
       when('/addPost', {
         templateUrl: 'partials/addPost',

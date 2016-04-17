@@ -27,6 +27,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(morgan('dev'));
 app.use(bodyParser());
+app.use( require('cookie-parser')());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use( expressSession({
@@ -34,14 +35,20 @@ app.use( expressSession({
 }));
 
 
-var env = process.env.NODE_ENV || 'development';
 
 
-// production only
-if (env === 'production') {
-  // TODO
+app.use(api.checkIfLoggedIn);
+
+
+//use this function in routes that you want user-only
+function requireUser(req, res, next){
+  if (!req.user) {
+    //res.redirect('/user/register');
+    res.status(401).send({ error: "ERR"});
+  } else {
+    next();
+  }
 }
-
 
 // Routes
 
@@ -49,6 +56,7 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);  //angular routes to this and routes/index renders the file
 app.get('/user/login', routes.login);
 app.get('/user/register', routes.register);
+app.get('/user/logout', routes.logout)
 
 // JSON API
 
@@ -56,7 +64,7 @@ app.get('/api/posts', api.posts); //return all posts from db
 
 //same route but different function calls to perform actions on post
 app.get('/api/post/:id', api.post); //return specific post from db
-app.post('/api/post', api.addPost); //add new post to db
+app.post('/api/post', requireUser, api.addPost); //add new post to db
 app.put('/api/post/:id', api.editPost);  //edit existing post in db
 app.delete('/api/post/:id', api.deletePost); //remove post from db
 
@@ -64,6 +72,7 @@ app.delete('/api/post/:id', api.deletePost); //remove post from db
 app.post('/api/login', api.login);
 app.post('/api/register', api.register)
 app.delete('/api/clear', api.clear)
+
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

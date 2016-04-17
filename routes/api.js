@@ -12,7 +12,33 @@ var Post = mongoose.model('Post');
 mongoose.connect('mongodb://localhost:27017/users');
 
 
+// Middleware - App checks for user before using any routes
+
+exports.checkIfLoggedIn = function(req, res, next){
+  if (req.session && req.session.username) {
+    User.findOne({username: req.session.username}, function(err, user){
+      if (!user) {
+        req.session.destroy();
+        res.redirect('/login');
+      }
+      else
+      {
+        req.user = user; 
+        delete req.user.password;
+        req.session.user = req.user;
+        res.locals.user = user;
+
+      }
+      next();
+    });
+  } else {
+    next();
+  }
+}
+
 // Helper functions
+
+
 
 function authenticateUser(username, password, callback){
   User.findOne({username: username, password:password}, function(err, user){
@@ -67,7 +93,8 @@ exports.posts = function (req, res) {
       });
     });
     res.json({
-      posts: posts
+      posts: posts,
+      user: req.session.username
 	  });
   });	
 };
@@ -108,6 +135,7 @@ exports.login = function(req, res){
     if (user) {
       // This way subsequent requests will know the user is logged in.
       req.session.username = user.username;
+      res.locals.user = user;
       res.json(true);
       // console.log("GOT IN | _id=" +username);
     } else {
@@ -119,12 +147,14 @@ exports.login = function(req, res){
 };
 
 
+
+
 // This check credentials where req.body holds all the form data 
 exports.register = function(req, res){
  console.log("REGISTER | _id=" + req.body.username + " _pwd=" + req.body.password);
   createUser(req.body, function(err,user){
     if(err){
-      res.status(400).send({ error: err });
+      res.status(401).send({ error: err });
       console.log("ERROR | " + err);
     }
     else {
