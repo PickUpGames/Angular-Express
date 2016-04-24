@@ -59,11 +59,14 @@ function requireUser(req, res, next){
 
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials); 
-app.get('/profile/:name', routes.profile) 
-app.get('/user/login', routes.login);
-app.get('/user/register', routes.register);
-app.get('/user/logout', routes.logout);
-app.get('/user/forget', routes.forget);
+app.get('/profile/:name', routes.profile);
+app.get('/event/:name', routes.event);
+app.get('/user/:name', routes.user);
+
+// app.get('/user/login', routes.login);
+// app.get('/user/register', routes.register);
+// app.get('/user/logout', routes.logout);
+// app.get('/user/forget', routes.forget);
 
 // JSON API
 

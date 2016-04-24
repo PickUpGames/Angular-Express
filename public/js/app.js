@@ -49,6 +49,25 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
       .when('/forget',{
             templateUrl: 'user/forget'
       })
+       .when('/addEvent', {
+        templateUrl: 'event/addEvent'
+       // controller: AddPostCtrl
+      })
+      .when('/events',{
+          templateUrl: 'event/index'
+      })
+      .when('/viewEvent', {
+        templateUrl: 'event/viewEvent'
+       // controller: ReadPostCtrl
+      })
+      .when('/editEvent/:id', {
+        templateUrl: 'event/editEvent'
+      //  controller: EditPostCtrl
+      })
+      .when('/deleteEvent/:id', {
+        templateUrl: 'event/deleteEvent'
+      //  controller: DeletePostCtrl
+      })
       .otherwise({
         redirectTo: '/'
       });

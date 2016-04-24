@@ -1,0 +1,44 @@
+div(id='form')
+  // HEADER
+  div(style='padding:10px 20px;')
+    h4
+      span.glyphicon.glyphicon-lock
+      |  Add an event
+  // BODY
+  div(style='padding:20px 20px;')
+    h5 Fill out the details of the event you want to have and start planning the fun!
+    form(action='/event/create', role='form', method='post')
+      .form-group
+        label(for='eName')
+          span.glyphicon.glyphicon-star
+          |  Event Name
+        input.form-control(type='text', name='eventName', placeholder='Enter event name', ngrequired='true')
+      // Form Group
+      .form-group
+        label(for='eType')
+          span.glyphicon.glyphicon-map-marker
+          |  Event Type
+        input.form-control(type='text', name='eventType', placeholder='Enter event type')
+      .form-group
+        label(for='eLocation')
+          span.glyphicon.glyphicon-map-marker
+          |  Event Location
+        input.form-control(type='text', name='location', placeholder='Enter event location')
+      .form-group
+        label(for='eDate')
+          span.glyphicon.glyphicon-calendar
+          |  Event Date
+        input.form-control(type='date', name='eventDate', placeholder='Enter event date')
+      .form-group
+        label(for='eGuestMax')
+          span.glyphicon.glyphicon-user
+          |  Max Guests
+        input.form-control(type='number', name='maxGuests', placeholder='Enter max amount of guests allowed.')
+      .form-group
+        label(for='eDescr')
+          span.glyphicon.glyphicon-time
+          |  Event Description
+        input.form-control(type='text', name='eventDescription', placeholder='Enter a short description of your event.')
+      button.btn.btn-success.btn-block
+        span.glyphicon.glyphicon-off
+        |  Create Event

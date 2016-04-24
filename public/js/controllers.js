@@ -45,10 +45,6 @@ function IndexCtrl($scope, $http) {
 function AddPostCtrl($scope, $http, $location) {
   $scope.form = {};
   $scope.submitPost = function () {
-    // $http.post('/api/post', $scope.form).
-    //   success(function(data) {
-    //     //$location.path('/');
-    //   });
     if ($scope.form.title && $scope.form.text) {
       $http.post('/api/post', $scope.form).then(
         function(res) {$location.path('/');}, // If ok, path home

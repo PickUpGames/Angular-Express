@@ -2,7 +2,7 @@
 /*
  * GET home page.
  */
-
+//renders index file
 exports.index = function(req, res){
 	if (req.user)
 	{
@@ -13,31 +13,34 @@ exports.index = function(req, res){
   res.render('index');
 };
 
+
+//returns all post pages
 exports.partials = function (req, res) {
   var name = req.params.name;
   res.render('partials/post/' + name);
 };
 
+//returns all profile pages
 exports.profile = function (req, res) {
   var name = req.params.name;
   res.render('partials/profile/' + name);
 };
 
-
-exports.login =function (req, res){
-	res.render('partials/user/login');
+//returns all event pages
+exports.event = function (req, res) {
+  var name = req.params.name;
+  res.render('partials/events/' + name);
 };
 
-exports.register =function (req, res){
-	res.render('partials/user/register');
-};
-
-exports.logout = function(req, res){
-  req.session.destroy();
-  //delete req.user;
-  res.redirect('/register');
-};
-
-exports.forget =function (req, res){
-  res.render('partials/user/forget');
+//returns all user authentication pages
+exports.user = function (req, res) {
+  var name = req.params.name;
+  if (name == 'logout')
+  {
+    req.session.destroy();
+    //delete req.user;
+    res.redirect('/register');    
+  }
+  else
+    res.render('partials/user/' + name);
 };
