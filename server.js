@@ -58,16 +58,18 @@ function requireUser(req, res, next){
 
 
 app.get('/', routes.index);
-app.get('/partials/:name', routes.partials);  
+app.get('/partials/:name', routes.partials); 
+app.get('/profile/:name', routes.profile) 
 app.get('/user/login', routes.login);
 app.get('/user/register', routes.register);
-app.get('/user/logout', routes.logout)
+app.get('/user/logout', routes.logout);
+app.get('/user/forget', routes.forget);
 
 // JSON API
 
 app.get('/api/posts', api.posts); //return all posts from db
 
-//same route but different function calls to perform actions on post
+
 app.get('/api/post/:id', api.post); //return specific post from db
 app.post('/api/post', requireUser, api.addPost); //add new post to db
 app.put('/api/post/:id', api.editPost);  //edit existing post in db

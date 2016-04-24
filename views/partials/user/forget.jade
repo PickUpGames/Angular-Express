@@ -1,0 +1,20 @@
+div(id='form')
+  div(style='padding:10px 20px;')
+    h4
+      span.glyphicon.glyphicon-lock
+      |  Forgot Password?
+  div(style='padding:20px 20px;')
+    form
+      .form-group
+        label(for='usrname')
+          span.glyphicon.glyphicon-user
+          |  Enter Email Address
+        input#email.form-control(type='text', placeholder='Enter Email')
+      button.btn.btn-success.btn-default
+        span.glyphicon.glyphicon-send
+        |  Continue
+    div
+      button.btn.btn-danger.btn-default.pull-left(href='/')
+        span.glyphicon.glyphicon-remove
+        |  Cancel
+

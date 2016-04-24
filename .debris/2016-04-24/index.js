@@ -37,7 +37,3 @@ exports.logout = function(req, res){
   //delete req.user;
   res.redirect('/register');
 };
-
-exports.forget =function (req, res){
-  res.render('partials/user/forget');
-};

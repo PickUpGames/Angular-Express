@@ -28,3 +28,15 @@
   content: "";
   padding: 0;
 }
+
+#eventImg:hover{
+ -moz-box-shadow: 0 10px 10px #ccc; 
+ -webkit-box-shadow: 0 10px 10px #ccc; 
+ box-shadow: 0 10px 10px #ccc;
+}
+
+
+#form {
+    width: 40%;
+    margin: 0 30%; 
+}

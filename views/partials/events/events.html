@@ -1,0 +1,22 @@
+<div class="jumbotron text-center">
+    <h1>Events Galore!</h1>
+</div>
+
+
+<div class="col-sm-6 col-md-3">
+    	<div class="thumbnail tile tile-medium">
+    		<a href="#" data-toggle="modal" data-target="#add-event-modal">
+    			<img id = "eventImg" src="/img/addEventImg.png" alt="AddEvent">
+    		</a>
+	   	</div>
+</div>
+
+<div class="col-sm-6 col-md-3"  ng-controller="EventController as EventCtrl">
+        {{events}}
+    	<div class="thumbnail tile tile-medium">
+    		<a href="#" data-toggle="modal" data-target="#view-event-modal">
+    			<img id = "eventImg" src="/img/sports.png" alt="Sports">
+    		</a>
+	   	</div>
+</div>
+

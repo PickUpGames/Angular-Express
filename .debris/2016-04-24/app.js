@@ -46,9 +46,6 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
       .when('/faq',{
             templateUrl: 'profile/faq'
       })
-      .when('/forget',{
-            templateUrl: 'user/forget'
-      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,0 +1,57 @@
+.jumbotron.text-center
+  h1 John Smith
+div(ng-app='', ng-init="choice='view'")
+  .col-xs-4.col-sm-4.col-md-3.list-group
+    a.list-group-item.active(ng-click="choice='view'", ng-class="{'active': choice=='view'}") View Account Info
+    a.list-group-item(ng-click="choice='editA'", ng-class="{'active': choice=='editA'}") Edit Account Info
+    a.list-group-item(ng-click="choice='editP'", ng-class="{'active': choice=='editP'}") Edit Preferences 
+    a.list-group-item(ng-click="choice='editR'", ng-class="{'active': choice=='editR'}") Edit Registered Events
+    a.list-group-item(ng-click="choice='hist'", ng-class="{'active': choice=='hist'}") History of Events
+    a.list-group-item(ng-click="choice='del'", ng-class="{'active': choice=='del'}") Delete Account
+  .col-xs-8.col-sm-8.col-md-9
+    #view-profile(ng-show="choice=='view'")
+      h4
+        span.glyphicon.glyphicon-user(style='color:green;')
+        |  Name: John Smith
+      h4
+        span.glyphicon.glyphicon-user
+        |  Username: JSmith
+      h4
+        span.glyphicon.glyphicon-time
+        |  Birthday: 1/1/1989
+      h4
+        span.glyphicon.glyphicon-road
+        |  Location: 12180
+    #view-profile(ng-show="choice=='editA'")
+      form(role='form')
+        .form-group
+          label(for='name')
+            span.glyphicon.glyphicon-user(style='color:green;')
+            | Name
+          input#name.form-control(type='text', value='John Smith')
+        .form-group
+          label(for='usrname')
+            span.glyphicon.glyphicon-user
+            | Username
+          input#usrname.form-control(type='text', value='JSmith')
+        .form-group
+          label(for='b-day')
+            span.glyphicon.glyphicon-time
+            | Birthday
+          input#b-day.form-control(type='date', value='1989-01-01')
+        .form-group
+          label(for='loc')
+            span.glyphicon.glyphicon-road
+            | Location
+          input#loc.form-control(type='text', value='12180')
+        button.btn.btn-success.btn-block(type='submit')
+          span.glyphicon.glyphicon-ok
+          |  Edit
+    #view-profile(ng-show="choice=='editP'")
+      | Preferences in progress
+    #view-profile(ng-show="choice=='editR'")
+      | Registered in progress
+    #view-profile(ng-show="choice=='hist'")
+      | History in progress
+    #view-profile(ng-show="choice=='del'")
+      | Delete in progress

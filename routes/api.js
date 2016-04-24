@@ -14,20 +14,22 @@ mongoose.connect('mongodb://localhost:27017/users');
 
 // Middleware - App checks for user before using any routes
 
+
+//if logged in, makes sure client alway knows
 exports.checkIfLoggedIn = function(req, res, next){
   if (req.session && req.session.username) {
     User.findOne({username: req.session.username}, function(err, user){
-      if (!user) {
+      if (!user) { 
         req.session.destroy();
-        res.redirect('/login');
+        //res.redirect('/login');  //this does not work, because the server cannot manipulate client side, only angular can.
       }
       else
       {
+
         req.user = user; 
         delete req.user.password;
         req.session.user = req.user;
         res.locals.user = user;
-
       }
       next();
     });
@@ -200,3 +202,41 @@ exports.clear = function (req, res) {
     User.remove({}, true);
     res.json(true);
 };
+
+
+
+
+// function createEvent(username,location, eventType, eventDescription,guests,maxGuests,callback){
+//   var eventData = {
+//     hostName: username,
+//     location:location,
+//     eventType: eventType,
+//     eventDescription: eventDescription,
+//     guests: guests,
+//     maxGuests: maxGuests
+//   };
+
+//   var newE = new Event(eventData);
+//   newE.save(function(err,event){
+//     callback(err,event);
+//   });
+// }
+
+// app.post('/event/create', function(req,res){
+//   if(req.user){
+//     var username = req.user.username;
+//     var location = req.body.location;
+//     var eventType = req.body.eventType;
+//     var eventDescription = req.body.eventDescription;
+//     var guests = req.body.guests;
+//     var maxGuests = req.body.maxGuests;
+//     createEvent(username,location, eventType, eventDescription,guests,maxGuests,function(err,event){
+//       if(err){
+//         res.render('error', {error:err});
+//       }
+//       else{
+//         res.redirect('/event/view?id='+event._id); //this line is possibly wrong
+//       }
+//     });
+//   }
+// });

@@ -51,8 +51,9 @@ function AddPostCtrl($scope, $http, $location) {
     //   });
     if ($scope.form.title && $scope.form.text) {
       $http.post('/api/post', $scope.form).then(
-      function(res) {$location.path('/');},
-      function(res) {$location.path('/login');});
+        function(res) {$location.path('/');}, // If ok, path home
+        function(res) {$location.path('/login'); //else path login
+      });
     }
     else{
       console.log("ENTER STUFF");
