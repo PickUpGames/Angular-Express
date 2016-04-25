@@ -54,11 +54,12 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
           controller: AddEventCtrl
       })
       .when('/events',{
-          templateUrl: 'event/index'
+          templateUrl: 'event/index',
+          controller: EventCtrl
       })
       .when('/viewEvent/:id', {
-        templateUrl: 'event/viewEvent'
-       // controller: ReadPostCtrl
+        templateUrl: 'event/viewEvent',
+        controller: ViewEventCtrl
       })
       .when('/editEvent/:id', {
         templateUrl: 'event/editEvent'

@@ -1,5 +1,6 @@
 function LoginCtrl($scope, $http, $location) {
   $scope.form = {};
+  $scope.error= "Need to login to add/join events.";
   $scope.login = function () {
     // $http.post('/api/login', $scope.form) .success(function(data) {$location.path('/'); });
     $http.post('/api/login', $scope.form).then(
@@ -112,3 +113,20 @@ function AddEventCtrl($scope, $http, $location) {
   };
 }
 
+
+function EventCtrl($scope, $http) {
+  $http.get('/api/events').
+    success(function(data, status, headers, config) {
+      $scope.events = data.events;
+      console.log(data.events);
+      $scope.user = data.user;
+    });
+}
+
+
+function ViewEventCtrl($scope, $http, $routeParams) {
+  $http.get('/api/event/' + $routeParams.id).
+    success(function(data) {
+      $scope.event= data.event;
+    });
+}

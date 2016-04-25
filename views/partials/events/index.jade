@@ -1,11 +1,10 @@
 .jumbotron.text-center
-  h1 Events Galore!
+  h1 There are {{events.length}} events!
 .col-sm-6.col-md-3
   .thumbnail.tile.tile-medium
     a(href='/addEvent')
       img#eventImg(src='/img/addEventImg.png', alt='AddEvent')
-.col-sm-6.col-md-3
-  | {{events}}
+.col-sm-6.col-md-3(ng-repeat='event in events')
   .thumbnail.tile.tile-medium
-    a(href='/viewEvent')
+    a(href='viewEvent/{{event.id}}')
       img#eventImg(src='/img/sports.png', alt='Sports')

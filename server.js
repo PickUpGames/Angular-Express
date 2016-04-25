@@ -45,7 +45,8 @@ app.use(api.checkIfLoggedIn);
 function requireUser(req, res, next){
   if (!req.user) {
     //throw authorization error
-    res.status(401).send({ error: "ERR"});
+    // res.redirect('/login');
+    res.status(401).send({ error: "Need to login."});
   } else {
     next();
   }
@@ -74,9 +75,10 @@ app.put('/api/post/:id', api.editPost);  //edit existing post in db
 app.delete('/api/post/:id', api.deletePost); //remove post from db
 
 //events
-// app.get('/api/events', api.events); //return all events from db
-// app.get('/api/event/:id', api.events); //return specific event from db
+app.get('/api/events', api.events); //return all events from db
+app.get('/api/event/:id', api.event); //return specific event from db
 app.post('/api/event', requireUser, api.addEvent); //add new event to db
+app.post('/api/event-attend/:id', requireUser, api.attendEvent);
 // app.put('/api/event/:id', api.editEvent);  //edit existing event in db
 // app.delete('/api/event/:id', api.deleteEvent); //remove event from db
 

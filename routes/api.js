@@ -78,14 +78,19 @@ function createUser(newUser, callback){
 }
 
 function createEvent(username, newEvent,callback){
+  console.log("EVENTDATE"+newEvent.eventDate);
   var eventData = {
+
     hostName: username,
+    eventName: newEvent.eventName,
     location: newEvent.location,
     eventType: newEvent.eventType,
+    eventDate: newEvent.eventDate,
     eventDescription: newEvent.eventDescription,
-    guests: newEvent.guests,
+    guests: 1,
     maxGuests: newEvent.maxGuests
   };
+
 
   var newE = new Event(eventData);
   newE.save(function(err,event){
@@ -228,6 +233,42 @@ exports.clear = function (req, res) {
 //_________________________________________________EVENTS___________________________________________________
 //*********************************************************************************************************
 // GET
+exports.events = function (req, res) {
+/* MongoDB */
+  Event.find({}, function(err, db){
+    if (err) throw err;
+    var events = []
+    db.forEach(function (event) {
+      events.push({
+        id: event._id,
+        title: event.eventName
+        // ,pic: event.picture
+      });
+    });
+    res.json({
+      events: events,
+      user: req.user
+    });
+  }); 
+};
+
+exports.event = function (req, res) {
+/* MongoDB */
+  var id = req.params.id
+  // console.log(req.params.id);
+  if (id)
+  {
+    Event.find({"_id": id}, function(err, event){
+      // console.log(event.eventName);
+      if (err) throw err;
+      res.json({
+        event: event[0]
+      });
+    });
+  } else{
+    res.json(false);
+  }
+};
 
 
 // POST
@@ -249,10 +290,22 @@ exports.addEvent = function (req, res) {
 
 };
 
-
+exports.attendEvent = function (req, res) {
+  // console.log(req.body);
+  var id = req.params.id
+  // console.log(req.params.id);
+  if (id) {
+    Event.findOne({ _id : id }, function (err, event){
+      event.guests += 1;
+      event.save();
+    });
+    res.json(true);
+  } else {
+    res.json(false);
+  }
+};
 
 // PUT
-
 
 // DELETE
 

@@ -1,17 +1,17 @@
-div(id='form')
+#form
   div(style='padding:10px 20px;')
-    h4  Tennis 
+    h4 {{event.eventName}} 
   div(style='padding:20px 20px;')
     img(src='/img/tennis.jpg')
     br
-    | Location: RPI Tennis Courts
+    | Location:{{event.location}} 
     br
-    | Time: Sunday 10am
+    | Time: 
+    input(type='date', value='{{event.eventDate}}', readonly='')
     br
-    | Attending 7/10
-    div
-      | Short Description
+    | Attending {{event.guests}}/{{event.maxGuests}}
+    div {{event.eventDescription}}
     form(role='form')
-      button.btn.btn-success.btn-block
+      button.btn.btn-success.btn-block(ng-click='attend()')
         span.glyphicon.glyphicon-ok
         |  Attend
