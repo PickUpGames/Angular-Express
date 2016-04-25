@@ -1,0 +1,25 @@
+#view-profile(ng-show="choice=='editA'")
+  form(role='form')
+    .form-group
+      label(for='name')
+        span.glyphicon.glyphicon-user(style='color:green;')
+        | Name
+      input#name.form-control(type='text', value='John Smith')
+    .form-group
+      label(for='usrname')
+        span.glyphicon.glyphicon-user
+        | Username
+      input#usrname.form-control(type='text', value='JSmith')
+    .form-group
+      label(for='b-day')
+        span.glyphicon.glyphicon-time
+        | Birthday
+      input#b-day.form-control(type='date', value='1989-01-01')
+    .form-group
+      label(for='loc')
+        span.glyphicon.glyphicon-road
+        | Location
+      input#loc.form-control(type='text', value='12180')
+    button.btn.btn-success.btn-block(type='submit')
+      span.glyphicon.glyphicon-ok
+      |  Edit

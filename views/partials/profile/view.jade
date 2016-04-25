@@ -22,36 +22,13 @@ div(ng-app='', ng-init="choice='view'")
       h4
         span.glyphicon.glyphicon-road
         |  Location: 12180
-    #view-profile(ng-show="choice=='editA'")
-      form(role='form')
-        .form-group
-          label(for='name')
-            span.glyphicon.glyphicon-user(style='color:green;')
-            | Name
-          input#name.form-control(type='text', value='John Smith')
-        .form-group
-          label(for='usrname')
-            span.glyphicon.glyphicon-user
-            | Username
-          input#usrname.form-control(type='text', value='JSmith')
-        .form-group
-          label(for='b-day')
-            span.glyphicon.glyphicon-time
-            | Birthday
-          input#b-day.form-control(type='date', value='1989-01-01')
-        .form-group
-          label(for='loc')
-            span.glyphicon.glyphicon-road
-            | Location
-          input#loc.form-control(type='text', value='12180')
-        button.btn.btn-success.btn-block(type='submit')
-          span.glyphicon.glyphicon-ok
-          |  Edit
-    #view-profile(ng-show="choice=='editP'")
-      | Preferences in progress
-    #view-profile(ng-show="choice=='editR'")
-      | Registered in progress
-    #view-profile(ng-show="choice=='hist'")
-      | History in progress
-    #view-profile(ng-show="choice=='del'")
-      | Delete in progress
+    include ./manage/EditAcc.jade
+    include ./manage/EditPref.jade
+    include ./manage/EditReg.jade
+    include ./manage/EditHist.jade
+    include ./manage/Del.jade
+
+
+
+    
+
