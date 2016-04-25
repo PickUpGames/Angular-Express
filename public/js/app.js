@@ -49,14 +49,14 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
       .when('/forget',{
             templateUrl: 'user/forget'
       })
-       .when('/addEvent', {
-        templateUrl: 'event/addEvent'
-       // controller: AddPostCtrl
+      .when('/addEvent', {
+          templateUrl: 'event/addEvent',
+          controller: AddEventCtrl
       })
       .when('/events',{
           templateUrl: 'event/index'
       })
-      .when('/viewEvent', {
+      .when('/viewEvent/:id', {
         templateUrl: 'event/viewEvent'
        // controller: ReadPostCtrl
       })

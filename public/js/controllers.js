@@ -96,3 +96,19 @@ function DeletePostCtrl($scope, $http, $location, $routeParams) {
     $location.url('/');
   };
 }
+
+function AddEventCtrl($scope, $http, $location) {
+  $scope.form = {};
+  $scope.submitEvent = function () {
+    if ($scope.form.eventName && $scope.form.eventType) {
+      $http.post('/api/event', $scope.form).then(
+        function(res) {$location.path('/');}, // If ok, path home
+        function(res) {$location.path('/login'); //else path login
+      });
+    }
+    else{
+      console.log("ENTER STUFF");
+    }
+  };
+}
+

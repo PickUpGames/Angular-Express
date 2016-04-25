@@ -41,7 +41,6 @@ exports.checkIfLoggedIn = function(req, res, next){
 // Helper functions
 
 
-
 function authenticateUser(username, password, callback){
   User.findOne({username: username, password:password}, function(err, user){
     callback("User not found with username/password", user);
@@ -78,8 +77,27 @@ function createUser(newUser, callback){
   }
 }
 
+function createEvent(username, newEvent,callback){
+  var eventData = {
+    hostName: username,
+    location: newEvent.location,
+    eventType: newEvent.eventType,
+    eventDescription: newEvent.eventDescription,
+    guests: newEvent.guests,
+    maxGuests: newEvent.maxGuests
+  };
+
+  var newE = new Event(eventData);
+  newE.save(function(err,event){
+    callback(err,event);
+  });
+}
 
 
+
+//*********************************************************************************************************
+//_________________________________________________POSTS___________________________________________________
+//*********************************************************************************************************
 // GET
 
 exports.posts = function (req, res) {
@@ -127,48 +145,6 @@ exports.addPost = function (req, res) {
 	res.json(true);
 };
 
-
-exports.login = function(req, res){
-  // console.log("TRIED TO LOGIN | _id=" + req.body.username + " _pwd=" + req.body.password);
-  var username = req.body.username;
-  var password = req.body.password;
-  
-  authenticateUser(username, password, function(err, user){
-    if (user) {
-      // This way subsequent requests will know the user is logged in.
-      req.session.username = user.username;
-      res.locals.user = user;
-      res.json(true);
-      // console.log("GOT IN | _id=" +username);
-    } else {
-      // console.log("NOPE= " + err);
-      res.status(400).send({ error: err });
-    }
-  });
-
-};
-
-
-
-
-// This check credentials where req.body holds all the form data 
-exports.register = function(req, res){
- console.log("REGISTER | _id=" + req.body.username + " _pwd=" + req.body.password);
-  createUser(req.body, function(err,user){
-    if(err){
-      res.status(401).send({ error: err });
-      console.log("ERROR | " + err);
-    }
-    else {
-      console.log("REGISTER | OK");
-      req.session.username = user.username;
-      res.json(true);
-    }
-
-  });
-};
-
-
 // PUT
 exports.editPost = function (req, res) {
   var id = req.params.id;
@@ -197,46 +173,87 @@ exports.deletePost = function (req, res) {
   }
 };
 
+//*********************************************************************************************************
+//_________________________________________________USERS___________________________________________________
+//*********************************************************************************************************
+// 
+
+
+exports.login = function(req, res){
+  // console.log("TRIED TO LOGIN | _id=" + req.body.username + " _pwd=" + req.body.password);
+  var username = req.body.username;
+  var password = req.body.password;
+  
+  authenticateUser(username, password, function(err, user){
+    if (user) {
+      // This way subsequent requests will know the user is logged in.
+      req.session.username = user.username;
+      res.locals.user = user;
+      res.json(true);
+      // console.log("GOT IN | _id=" +username);
+    } else {
+      // console.log("NOPE= " + err);
+      res.status(400).send({ error: err });
+    }
+  });
+
+};
+
+
+// This check credentials where req.body holds all the form data 
+exports.register = function(req, res){
+ console.log("REGISTER | _id=" + req.body.username + " _pwd=" + req.body.password);
+  createUser(req.body, function(err,user){
+    if(err){
+      res.status(401).send({ error: err });
+      console.log("ERROR | " + err);
+    }
+    else {
+      console.log("REGISTER | OK");
+      req.session.username = user.username;
+      res.json(true);
+    }
+
+  });
+};
+
+//remove all users
 exports.clear = function (req, res) {
 //  console.log("I DID MY JOB");
     User.remove({}, true);
     res.json(true);
 };
 
+//*********************************************************************************************************
+//_________________________________________________EVENTS___________________________________________________
+//*********************************************************************************************************
+// GET
+
+
+// POST
+
+exports.addEvent = function (req, res) {
+  // console.log(req.body);
+
+  if(req.user){
+    var username = req.user.username;
+    createEvent(username, req.body ,function(err,event){
+      if(err){
+        res.status(400).send({ error: err });
+      }
+      else{
+        res.redirect('/event/view/'+event._id); //this line is possibly wrong
+      }
+    });
+  }
+
+};
 
 
 
-// function createEvent(username,location, eventType, eventDescription,guests,maxGuests,callback){
-//   var eventData = {
-//     hostName: username,
-//     location:location,
-//     eventType: eventType,
-//     eventDescription: eventDescription,
-//     guests: guests,
-//     maxGuests: maxGuests
-//   };
+// PUT
 
-//   var newE = new Event(eventData);
-//   newE.save(function(err,event){
-//     callback(err,event);
-//   });
-// }
 
-// app.post('/event/create', function(req,res){
-//   if(req.user){
-//     var username = req.user.username;
-//     var location = req.body.location;
-//     var eventType = req.body.eventType;
-//     var eventDescription = req.body.eventDescription;
-//     var guests = req.body.guests;
-//     var maxGuests = req.body.maxGuests;
-//     createEvent(username,location, eventType, eventDescription,guests,maxGuests,function(err,event){
-//       if(err){
-//         res.render('error', {error:err});
-//       }
-//       else{
-//         res.redirect('/event/view?id='+event._id); //this line is possibly wrong
-//       }
-//     });
-//   }
-// });
+// DELETE
+
+

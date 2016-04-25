@@ -58,25 +58,27 @@ function requireUser(req, res, next){
 
 
 app.get('/', routes.index);
-app.get('/partials/:name', routes.partials); 
+app.get('/partials/:name', routes.partials);  
 app.get('/profile/:name', routes.profile);
 app.get('/event/:name', routes.event);
 app.get('/user/:name', routes.user);
 
-// app.get('/user/login', routes.login);
-// app.get('/user/register', routes.register);
-// app.get('/user/logout', routes.logout);
-// app.get('/user/forget', routes.forget);
 
 // JSON API
 
+//posts
 app.get('/api/posts', api.posts); //return all posts from db
-
-
 app.get('/api/post/:id', api.post); //return specific post from db
 app.post('/api/post', requireUser, api.addPost); //add new post to db
 app.put('/api/post/:id', api.editPost);  //edit existing post in db
 app.delete('/api/post/:id', api.deletePost); //remove post from db
+
+//events
+// app.get('/api/events', api.events); //return all events from db
+// app.get('/api/event/:id', api.events); //return specific event from db
+app.post('/api/event', requireUser, api.addEvent); //add new event to db
+// app.put('/api/event/:id', api.editEvent);  //edit existing event in db
+// app.delete('/api/event/:id', api.deleteEvent); //remove event from db
 
 
 app.post('/api/login', api.login);
