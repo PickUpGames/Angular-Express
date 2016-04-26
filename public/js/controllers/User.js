@@ -30,3 +30,26 @@ function RegisterCtrl($scope, $http, $location) {
     )
   };
 }
+function ProfileCtrl($scope, $http, $location) {
+  //get user data
+  $http.get('/api/profile').then(
+    function(res) {
+      if (res.data.user)
+      {
+        $scope.user = res.data.user; $scope.form = res.data.user;
+      }
+      else
+      {
+        $location.path('/login');
+      }
+     }
+  ); 
+
+  $scope.Edit = function ()
+  {
+    $http.put('/api/profile', $scope.form).
+      success(function(res) {
+        $scope.status= res.status;
+      });
+  };
+}

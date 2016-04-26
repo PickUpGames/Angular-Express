@@ -38,6 +38,7 @@ exports.checkIfLoggedIn = function(req, res, next){
   }
 }
 
+
 // Helper functions
 
 
@@ -46,6 +47,52 @@ function authenticateUser(username, password, callback){
     callback("User not found with username/password", user);
   });
 }
+
+
+//check for username, if same username, ignore
+//if username taken, error
+// 
+function verifyProfile(req, callback){
+  nullUser= {};
+  console.log("ID IS "+ req.session.user._id);
+  Data = req.body;
+  User.findOne({ username : Data.username}, function(err, user){
+    if (user)
+    {
+      // console.log(user._id.toString());
+      // console.log(req.session.user._id.toString());
+      if (user._id.toString() == req.session.user._id.toString())
+      {
+        user.name = Data.name;
+        user.password = Data.password;
+        user.birthday = Data.birthday;
+        user.location = Data.location;
+        user.save();
+        req.session.user.name = Data.name;
+        callback(req,"Changes saved!", user);
+      }
+      else
+      {
+        callback(req,"Username already taken.", nullUser);
+      }
+    }
+    else
+    {
+        User.findOne({ _id : req.session.user._id}, function(err, nuser){
+        nuser.name = Data.name;
+        nuser.username = Data.username;
+        nuser.password = Data.password;
+        nuser.birthday = Data.birthday;
+        nuser.location = Data.location;
+        nuser.save();
+        req.session.user.username = Data.username;
+        callback(req,"Username changed!", nuser);
+        });
+    }
+    
+  });
+}
+
 
 //createUser takes in form data and adds a user to the DB 
 function createUser(newUser, callback){
@@ -224,10 +271,26 @@ exports.register = function(req, res){
 
 //remove all users
 exports.clear = function (req, res) {
-//  console.log("I DID MY JOB");
     User.remove({}, true);
     res.json(true);
 };
+
+exports.profile = function(req, res){
+   User.findOne({username: req.session.username}, function(err, user){
+    res.send({ user: user });
+   });
+};
+
+
+exports.editprofile = function(req, res){
+  verifyProfile(req, function(newreq, status,user){
+
+    res.req.session.username = newreq.session.user.username;
+    res.send({ status: status });
+  });
+};
+
+
 
 //*********************************************************************************************************
 //_________________________________________________EVENTS___________________________________________________

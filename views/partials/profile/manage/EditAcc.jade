@@ -4,22 +4,29 @@
       label(for='name')
         span.glyphicon.glyphicon-user(style='color:green;')
         | Name
-      input#name.form-control(type='text', value='John Smith')
+      input#name.form-control(type='text', ng-model='form.name')
     .form-group
       label(for='usrname')
         span.glyphicon.glyphicon-user
         | Username
-      input#usrname.form-control(type='text', value='JSmith')
+      input#usrname.form-control(type='text', ng-model='form.username')
+    .form-group
+      label(for='passw')
+        span.glyphicon.glyphicon-eye-open
+        | Password
+      input#passw.form-control(type='text', ng-model='form.password')
     .form-group
       label(for='b-day')
         span.glyphicon.glyphicon-time
         | Birthday
-      input#b-day.form-control(type='date', value='1989-01-01')
+      input#b-day.form-control(type='date', ng-model='form.birthday')
     .form-group
       label(for='loc')
         span.glyphicon.glyphicon-road
         | Location
-      input#loc.form-control(type='text', value='12180')
-    button.btn.btn-success.btn-block(type='submit')
+      input#loc.form-control(type='text', ng-model='form.location')
+    button.btn.btn-success.btn-block(ng-click='Edit()')
       span.glyphicon.glyphicon-ok
       |  Edit
+    .alert.alert-danger(ng-show='status=="Username already taken."') {{status}}
+    .alert.alert-success(ng-show='status && status!="Username already taken."') {{status}}

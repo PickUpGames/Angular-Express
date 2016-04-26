@@ -36,6 +36,7 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
       })
       .when('/viewprofile',{
             templateUrl: 'profile/view'
+            ,controller: ProfileCtrl
       })
       // .when('/manageprofile',{
       //       templateUrl: 'profile/manage'

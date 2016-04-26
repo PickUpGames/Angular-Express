@@ -46,7 +46,8 @@ function requireUser(req, res, next){
   if (!req.user) {
     //throw authorization error
     // res.redirect('/login');
-    res.status(401).send({ error: "Need to login."});
+    // res.json({ error: "Need to login."});
+    res.json({ error: 'Need to login.'});
   } else {
     next();
   }
@@ -59,7 +60,8 @@ function requireUser(req, res, next){
 
 
 app.get('/', routes.index);
-app.get('/partials/:name', routes.partials);  
+app.get('/partials/:name', routes.partials);
+app.get('/profile/view', requireUser, routes.view);
 app.get('/profile/:name', routes.profile);
 app.get('/event/:name', routes.event);
 app.get('/user/:name', routes.user);
@@ -86,6 +88,10 @@ app.post('/api/event-attend/:id', requireUser, api.attendEvent);
 app.post('/api/login', api.login);
 app.post('/api/register', api.register)
 app.delete('/api/clear', api.clear)
+
+//profile
+app.get('/api/profile', api.profile); //return user profile from db
+app.put('/api/profile', api.editprofile);
 
 
 // redirect all others to the index (HTML5 history)

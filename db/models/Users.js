@@ -5,7 +5,8 @@ var userSchema = new mongoose.Schema({
 	username: String,
 	password: String,
 	birthday: String,
-	rating: {type: Number, default: 5.0}
+	rating: {type: Number, default: 5.0},
+	location: Number
 });
 
 var User = mongoose.model('User', userSchema);

@@ -20,6 +20,12 @@ exports.partials = function (req, res) {
   res.render('partials/post/' + name);
 };
 
+
+//returns all profile pages
+exports.view = function (req, res) {
+  res.render('partials/profile/view');
+};
+
 //returns all profile pages
 exports.profile = function (req, res) {
   var name = req.params.name;

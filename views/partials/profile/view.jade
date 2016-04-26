@@ -1,6 +1,6 @@
 .jumbotron.text-center
-  h1 John Smith
-div(ng-app='', ng-init="choice='view'")
+  h1 {{user.username}}
+div(ng-init="choice='view'")
   .col-xs-4.col-sm-4.col-md-3.list-group
     a.list-group-item.active(ng-click="choice='view'", ng-class="{'active': choice=='view'}") View Account Info
     a.list-group-item(ng-click="choice='editA'", ng-class="{'active': choice=='editA'}") Edit Account Info
@@ -12,23 +12,18 @@ div(ng-app='', ng-init="choice='view'")
     #view-profile(ng-show="choice=='view'")
       h4
         span.glyphicon.glyphicon-user(style='color:green;')
-        |  Name: John Smith
+        |  Name: {{user.name}}
       h4
         span.glyphicon.glyphicon-user
-        |  Username: JSmith
+        |  Username: {{user.username}}
       h4
         span.glyphicon.glyphicon-time
-        |  Birthday: 1/1/1989
+        |  Birthday: {{user.birthday}}
       h4
         span.glyphicon.glyphicon-road
-        |  Location: 12180
+        |  Location: {{user.location}}
     include ./manage/EditAcc.jade
     include ./manage/EditPref.jade
     include ./manage/EditReg.jade
     include ./manage/EditHist.jade
     include ./manage/Del.jade
-
-
-
-    
-
