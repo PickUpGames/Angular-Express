@@ -325,7 +325,8 @@ exports.event = function (req, res) {
       // console.log(event.eventName);
       if (err) throw err;
       res.json({
-        event: event[0]
+        event: event[0],
+        user: req.user
       });
     });
   } else{
@@ -343,10 +344,11 @@ exports.addEvent = function (req, res) {
     var username = req.user.username;
     createEvent(username, req.body ,function(err,event){
       if(err){
-        res.status(400).send({ error: err });
+        res.status(400).send({ error: err});
       }
       else{
-        res.redirect('/event/view/'+event._id); //this line is possibly wrong
+        res.send({ user: req.user});
+        // res.redirect('/event/view/'+event._id); //this line is possibly wrong
       }
     });
   }

@@ -4,9 +4,14 @@ function AddEventCtrl($scope, $http, $location) {
   $scope.submitEvent = function () {
     if ($scope.form.eventName && $scope.form.eventType) {
       $http.post('/api/event', $scope.form).then(
-        function(res) {$location.path('/');}, // If ok, path home
-        function(res) {$location.path('/login'); //else path login
-      });
+         function(res) {
+            if (res.data.user)
+            { $location.path('/'); }
+            else
+            { $location.path('/login'); }
+          }
+        
+      );
     }
     else{
       console.log("ENTER STUFF");
@@ -30,10 +35,17 @@ function ViewEventCtrl($scope, $http, $routeParams, $location) {
     success(function(data) {
       console.log(data.event);
       $scope.event= data.event;
+      $scope.user= data.user;
     });
   $scope.attend = function(){
-    $http.post('/api/event-attend/' + $routeParams.id).then(
+    if ($scope.user)
+    {$http.post('/api/event-attend/' + $routeParams.id).then(
         function(res) {$location.path('/');}
-      )
+    );}
+    else
+    {
+      $location.path('/login');
+    }
+    
   };
 }
