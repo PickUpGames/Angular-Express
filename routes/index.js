@@ -19,11 +19,6 @@ exports.home = function (req, res) {
   res.render('partials/home');
 };
 
-//returns all post pages
-exports.partials = function (req, res) {
-  var name = req.params.name;
-  res.render('partials/post/' + name);
-};
 
 
 //returns all profile pages

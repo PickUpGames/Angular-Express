@@ -69,12 +69,6 @@ app.get('/user/:name', routes.user);
 
 // JSON API
 
-//posts
-app.get('/api/posts', api.posts); //return all posts from db
-app.get('/api/post/:id', api.post); //return specific post from db
-app.post('/api/post', requireUser, api.addPost); //add new post to db
-app.put('/api/post/:id', api.editPost);  //edit existing post in db
-app.delete('/api/post/:id', api.deletePost); //remove post from db
 
 //events
 app.get('/api/events', api.events); //return all events from db

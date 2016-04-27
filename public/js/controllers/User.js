@@ -1,6 +1,6 @@
 function LoginCtrl($scope, $http, $location) {
   $scope.form = {};
-  $scope.error= "Need to login to add/join events.";
+  $scope.error= "Need to login for further actions.";
   $scope.login = function () {
     // $http.post('/api/login', $scope.form) .success(function(data) {$location.path('/'); });
     $http.post('/api/login', $scope.form).then(

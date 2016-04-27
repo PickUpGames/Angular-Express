@@ -7,8 +7,7 @@ require('../db/models/Users');
 var User = mongoose.model('User');
 require('../db/models/Events');
 var Event = mongoose.model('Event');
-require('../db/models/Posts');
-var Post = mongoose.model('Post');
+
 mongoose.connect('mongodb://localhost:27017/users');
 
 
@@ -147,83 +146,7 @@ function createEvent(username, newEvent,callback){
 
 
 
-//*********************************************************************************************************
-//_________________________________________________POSTS___________________________________________________
-//*********************************************************************************************************
-// GET
 
-exports.posts = function (req, res) {
-/* MongoDB */
-	Post.find({}, function(err, db){
-  	if (err) throw err;
-		var posts = []
-		db.forEach(function (post) {
-	    posts.push({
-			  id: post._id,
-  		  title: post.title,
-        text: post.text.substr(0, 50) + '...'
-      });
-    });
-    res.json({
-      posts: posts,
-      user: req.session.username
-	  });
-  });	
-};
-
-exports.post = function (req, res) {
-/* MongoDB */
-	var id = req.params.id
-	if (id)
-	{
-    Post.find({"_id": id}, function(err, post){
-      if (err) throw err;
-     // console.log(post);
-      res.json({
-        post: post[0]
-      });
-    });
-	}	else{
-		res.json(false);
-	}
-};
-
-
-// POST
-exports.addPost = function (req, res) {
- 	// console.log(req.body);
-	var newP = new Post(req.body);
-	newP.save();
-	res.json(true);
-};
-
-// PUT
-exports.editPost = function (req, res) {
-  var id = req.params.id;
-
-  if (id) {
-    Post.findOne({ _id : id }, function (err, post){
-      post.title = req.body.title;
-      post.text =  req.body.text;
-      post.save();
-    });
-    res.json(true);
-  } else {
-    res.json(false);
-  }
-};
-
-// DELETE
-exports.deletePost = function (req, res) {
-  var id = req.params.id;
-
-  if (id) {
-    Post.remove({"_id": id},true);
-    res.json(true);
-  } else {
-    res.json(false);
-  }
-};
 
 //*********************************************************************************************************
 //_________________________________________________USERS___________________________________________________
