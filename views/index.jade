@@ -3,7 +3,7 @@ extends layout
 block body
   div(ng-init="user = #{user}")
     include ./partials/header.jade
-  div(ng-view)
+  div#view(ng-view)
 
 
 

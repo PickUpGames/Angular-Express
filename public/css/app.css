@@ -35,6 +35,15 @@
 }
 
 #green{
-    color:green;
+    color: lightgreen;
     aria-hidden='true';
+}
+
+body {
+    background-color: lightblue !important;
+}
+
+.jumbotron {
+    color: white !important;
+    background-color: navy !important;   
 }
