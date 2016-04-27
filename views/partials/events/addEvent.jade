@@ -1,4 +1,4 @@
-div(id='form')
+#form
   // HEADER
   div(style='padding:10px 20px;')
     h4
@@ -18,7 +18,12 @@ div(id='form')
         label(for='eType')
           span.glyphicon.glyphicon-map-marker
           |  Event Type
-        input.form-control(type='text', ng-model='form.eventType', name='eventType', placeholder='Enter event type')
+        select.form-control(ng-model='form.eventType', name='eventType', placeholder='Enter event type')
+          option(value='Outdoor Sport') Outdoor Sport
+          option(value='Indoor Sport') Indoor Sport
+          option(value='Indoor Game') Indoor Game
+          option(value='Computer Game') Computer Game
+          option(value='Other') Other
       .form-group
         label(for='eLocation')
           span.glyphicon.glyphicon-map-marker
