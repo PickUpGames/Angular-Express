@@ -1,9 +1,10 @@
-div(id='form')
-  div(style='padding:10px 20px;')
+.col-sm-1.col-md-4
+.col-sm-10.col-md-4
+  div(id='form-padding')
     h4
       span.glyphicon.glyphicon-lock
       |  Signup
-  div(style='padding:20px 20px;')
+  div(id='form-padding')
     form(role='form', name='signup-form')
       .form-group
         label(for='name')
@@ -33,7 +34,7 @@ div(id='form')
       button.btn.btn-success.btn-block(ng-click="register()")
         span.glyphicon.glyphicon-off
         |  Signup
-      button.btn.btn-success.btn-block(ng-click="clear()")
-        span.glyphicon.glyphicon-off
-        |  DELETE_ALL_USERS
+      //- button.btn.btn-success.btn-block(ng-click="clear()")
+      //-   span.glyphicon.glyphicon-off
+      //-   |  DELETE_ALL_USERS
       .alert.alert-danger(ng-show='error') {{error}}   

@@ -2,8 +2,11 @@
   h1 Contact
   form(role='form')
     .form-group
-      textarea#contact(name='comment', placeholder='Inquiries here')
+      textarea#contact(name='comment', ng-model="form.comment", placeholder='Inquiries here')
       br
-    button.btn.btn-success(type='submit')
+    .form-group
+      input#name(type="text", name='name', ng-model="form.name", placeholder='Name')
+      br
+    button.btn.btn-success(ng-click="submit()")
       span.glyphicon.glyphicon-send
       |  Contact Developers

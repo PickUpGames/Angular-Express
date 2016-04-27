@@ -1,7 +1,7 @@
 .jumbotron.text-center
   h1 FAQ  
   div(ng-init="btn=0")
-    h4.glyphicon.glyphicon-plus(ng-click="btn = !btn", style='color:green;', aria-hidden='true')
+    h4#green.glyphicon.glyphicon-plus(ng-click="btn = !btn")
       b Question
     div(ng-show='btn == 1')
       br

@@ -1,7 +1,7 @@
 nav.navbar.navbar-inverse
   .navbar-header
     a(href='/', title='PickUpGames')
-      img(alt='PickUpGames', src='img/logo.png', style='max-width: 170px; height: auto; width: auto; display: inline-block; float: left; padding: 5px; padding-right: 20px; top: 0px;')
+      img#logo(alt='PickUpGames', src='img/logo.png')
     button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bar-collapse')
       span.sr-only Toggle navigation
       span.icon-bar
@@ -25,14 +25,15 @@ nav.navbar.navbar-inverse
           li
             a(href='/faq') FAQ
       li(ng-show='!user')
-        a(href='/login' ) Login
+        a(href='/login') Login
       li(ng-show='user')
-        a Logged in as 
+        a
+          | Logged in as 
           u {{user}}
       li(ng-show='user')
         a(href='/logout') Logout
     button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#search-box')
-      span.glyphicon.glyphicon-search(style='color:white', aria-hidden='true')
+      span#search-button.glyphicon.glyphicon-search
     #search-box.collapse.navbar-collapse
       form.navbar-form.navbar-right(role='search')
         .form-group
