@@ -60,7 +60,7 @@ function requireUser(req, res, next){
 
 
 app.get('/', routes.index);
-app.get('/partials/:name', routes.partials);
+app.get('/partials/home', routes.home);
 app.get('/profile/view', requireUser, routes.view);
 app.get('/profile/:name', routes.profile);
 app.get('/event/:name', routes.event);

@@ -14,6 +14,11 @@ exports.index = function(req, res){
 };
 
 
+//returns home page
+exports.home = function (req, res) {
+  res.render('partials/home');
+};
+
 //returns all post pages
 exports.partials = function (req, res) {
   var name = req.params.name;

@@ -3,7 +3,7 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider. //all these angular paths are dealt with by the server.js file
       when('/', {
-        templateUrl: 'partials/index',
+        templateUrl: 'partials/home',
         controller: IndexCtrl
       })
       .when('/login', {
@@ -11,7 +11,7 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
         controller: LoginCtrl
       })
       .when('/logout', {
-        templateUrl: 'partials/index',
+        templateUrl: 'partials/home',
         controller: LogoutCtrl
       })
       .when('/register', {
