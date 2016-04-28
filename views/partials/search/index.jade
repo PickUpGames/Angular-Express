@@ -27,7 +27,12 @@ br
     a(href='viewEvent/{{event._id}}')
       .caption
         b {{event.eventName}}
-      img#eventImg(src='/img/sports.png', alt='Sports')
+      img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
+      img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
+      img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
+      img#eventImg(ng-show="event.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
+      img#eventImg(ng-show="event.eventType=='Other'",src='/img/other.png', alt='other')
+  
   
   //- p date={{event.eventDate}}
   //- p type={{event.eventType}}
