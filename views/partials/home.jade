@@ -1,7 +1,7 @@
 .jumbotron.text-center
   h1 {{tagline}}!
 
-.col-sm-6.col-md-3(ng-repeat='event in events')
+.col-sm-6.col-md-3(ng-repeat='event in eventList')
   .thumbnail.tile.tile-medium
     a(href='viewEvent/{{event._id}}')
       img#eventImg(src='/img/sports.png', alt='Sports')

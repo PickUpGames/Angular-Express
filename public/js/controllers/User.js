@@ -68,6 +68,7 @@ function ProfileCtrl($scope, $http, $location) {
       success(function(res) {
         console.log("P did it");
         $scope.status= res.status;
+        $scope.newTag = [];
       });
   };
 
