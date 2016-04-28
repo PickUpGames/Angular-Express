@@ -18,6 +18,10 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
         templateUrl: 'user/register',
         controller: RegisterCtrl
       })
+      .when('/search', {
+        templateUrl: 'partials/search',
+        controller: SearchCtrl
+      })
       .when('/viewprofile',{
             templateUrl: 'profile/view'
             ,controller: ProfileCtrl

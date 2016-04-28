@@ -11,3 +11,11 @@ function IndexCtrl($scope, $http) {
   //   });
 }
 
+
+
+function SearchCtrl($scope, $http) {
+  // $http.get('/api/rec').
+  //   success(function(data, status, headers, config) {
+  //     $scope.user = data.user;
+  //   });
+}

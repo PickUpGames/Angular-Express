@@ -92,6 +92,22 @@ function verifyProfile(req, callback){
   });
 }
 
+//update tags
+function edit(type, req, callback){
+  Data = req.body;
+  console.log("USer is " + req.session.username);
+  User.findOne({username: req.session.username}, function(err, user){
+    if (type=="P")
+    {
+      console.log("tags are " + Data);
+      user.tag = Data;
+      user.save();
+    }    
+    callback("Preferences changed!", user);
+  });
+}
+
+
 
 //createUser takes in form data and adds a user to the DB 
 function createUser(newUser, callback){
@@ -213,11 +229,21 @@ exports.profile = function(req, res){
 
 
 exports.editprofile = function(req, res){
-  verifyProfile(req, function(newreq, status,user){
+  var name = req.params.name;
+  console.log(name);
+  console.log("HEREW" + req.body);
+  if (name == "A")
+  {
+    verifyProfile(req, function(newreq, status,user){
 
     res.req.session.username = newreq.session.user.username;
     res.send({ status: status });
-  });
+  });  
+  }
+  else
+    {edit(name, req, function(status, user){
+      console.log("EDIT SOMETHING");
+    });}
 };
 
 

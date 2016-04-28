@@ -32,11 +32,15 @@ function RegisterCtrl($scope, $http, $location) {
 }
 function ProfileCtrl($scope, $http, $location) {
   //get user data
+  
   $http.get('/api/profile').then(
     function(res) {
       if (res.data.user)
       {
-        $scope.user = res.data.user; $scope.form = res.data.user;
+        $scope.user = res.data.user; 
+        $scope.form = res.data.user;
+        $scope.index = 0;
+        $scope.tags = res.data.user.tag; 
       }
       else
       {
@@ -45,11 +49,26 @@ function ProfileCtrl($scope, $http, $location) {
      }
   ); 
 
-  $scope.Edit = function ()
+  
+  $scope.EditA = function ()
   {
-    $http.put('/api/profile', $scope.form).
+    $http.put('/api/profile/A', $scope.form).
       success(function(res) {
+        console.log("A");
         $scope.status= res.status;
       });
   };
+
+  $scope.EditP = function ()
+  {
+    $scope.tags.push($scope.newTag);
+    console.log($scope.tags);
+
+    $http.put('/api/profile/P', $scope.tags).
+      success(function(res) {
+        console.log("P did it");
+        $scope.status= res.status;
+      });
+  };
+
 }

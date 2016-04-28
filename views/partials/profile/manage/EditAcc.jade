@@ -25,7 +25,7 @@
         span.glyphicon.glyphicon-road
         | Location
       input#loc.form-control(type='text', ng-model='form.location')
-    button.btn.btn-success.btn-block(ng-click='Edit()')
+    button.btn.btn-success.btn-block(ng-click='EditA()')
       span.glyphicon.glyphicon-ok
       |  Edit
     .alert.alert-danger(ng-show='status=="Username already taken."') {{status}}

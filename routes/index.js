@@ -19,6 +19,11 @@ exports.home = function (req, res) {
   res.render('partials/home');
 };
 
+//returns home page
+exports.search = function (req, res) {
+  res.render('partials/search/index');
+};
+
 
 
 //returns all profile pages

@@ -3,7 +3,7 @@
   div(id='form-padding')
     h1
       b {{event.eventName}} 
-  div(id='form-padding')
+  div
     img(src='/img/tennis.jpg')
     .col-sm-2.col-md-10
       h4 Location:{{event.location}} 
@@ -11,15 +11,16 @@
         input(type='date', value='{{event.eventDate}}', readonly='')
       h4 Attending: {{event.guests}}/{{event.maxGuests}} guests
       h4 Description: {{event.eventDescription}}
-    .col-sm-2.col-md-2(id='form-padding')
+    .col-sm-2.col-md-2
       h4 Tags: 
         #tagbox(ng-repeat="each in event.tag")
           {{each}}
-    br
+
   form(role='form')
-    button.btn.btn-success.btn-block(ng-click='attend()')
-      span.glyphicon.glyphicon-ok
-      |  Attend
-  .alert.alert-danger(ng-show='error') {{error}}
+      button.btn.btn-success.btn-block(ng-click='attend()')
+        span.glyphicon.glyphicon-ok
+        |  Attend
+    .alert.alert-danger(ng-show='error') {{error}}
+  
     
 

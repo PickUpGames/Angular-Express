@@ -1,2 +1,11 @@
 #view-profile(ng-show="choice=='editP'")
-  | Preferences in progress
+    form(role='form')
+      .form-group(ng-repeat="each in tags")
+        .col-sm-1.col-md-2
+          input#tags.form-control(type='text', ng-model='each')
+      .form-group  
+        input#tags.form-control(type='text', ng-model='newTag', placeholder= "Enter new preference")
+      button.btn.btn-success.btn-block(ng-click='EditP()')
+        span.glyphicon.glyphicon-ok
+        |  Edit
+      .alert.alert-success(ng-show='status') {{status}}  

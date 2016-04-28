@@ -61,6 +61,7 @@ function requireUser(req, res, next){
 
 app.get('/', routes.index);
 app.get('/partials/home', routes.home);
+app.get('/partials/search', routes.search);
 app.get('/profile/view', requireUser, routes.view);
 app.get('/profile/:name', routes.profile);
 app.get('/event/:name', routes.event);
@@ -85,7 +86,7 @@ app.delete('/api/clear', api.clear)
 
 //profile
 app.get('/api/profile', api.profile); //return user profile from db
-app.put('/api/profile', api.editprofile);
+app.put('/api/profile/:name', api.editprofile);
 
 
 // redirect all others to the index (HTML5 history)
