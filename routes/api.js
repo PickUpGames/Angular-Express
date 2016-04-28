@@ -204,6 +204,7 @@ exports.register = function(req, res){
     else {
       // console.log("REGISTER | OK");
       req.session.username = user.username;
+      res.locals.user = user;
       res.json(true);
     }
 

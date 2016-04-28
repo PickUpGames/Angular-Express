@@ -1,6 +1,6 @@
 function LoginCtrl($scope, $http, $location) {
   $scope.form = {};
-  $scope.error= "Need to login for further actions.";
+  $scope.error= "";
   $scope.login = function () {
     // $http.post('/api/login', $scope.form) .success(function(data) {$location.path('/'); });
     $http.post('/api/login', $scope.form).then(
@@ -20,7 +20,7 @@ function RegisterCtrl($scope, $http, $location) {
   $scope.form = {};
   $scope.register = function () {
     $http.post('/api/register', $scope.form).then(
-      function(res) {$location.path('/');},
+      function(res) {$location.path('/'); location.reload();},
       function(res) {$scope.error= res.data.error;})
   };
   $scope.clear = function () {
