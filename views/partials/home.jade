@@ -3,5 +3,5 @@
 
 .col-sm-6.col-md-3(ng-repeat='event in events')
   .thumbnail.tile.tile-medium
-    a(href='viewEvent/{{event.id}}')
+    a(href='viewEvent/{{event._id}}')
       img#eventImg(src='/img/sports.png', alt='Sports')
