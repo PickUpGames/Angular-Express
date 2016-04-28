@@ -4,7 +4,12 @@
 // if there is a user, find local events that are to user preferences
 
 function IndexCtrl($scope, $http) {
-	$scope.tagline = 'To the moon and back!'; 
+	$scope.tagline = 'Welcome, Time to play!'; 
+
+	$http.get('/api/events').success(function(data, status, headers, config){
+		$scope.events = data.events;
+	});
+	
   // $http.get('/api/rec').
   //   success(function(data, status, headers, config) {
   //     $scope.user = data.user;

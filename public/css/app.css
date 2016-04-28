@@ -1,10 +1,15 @@
 /* app css stylesheet */
-
+#eventImg{
+ background-color: rgba(42, 78, 110, 0.60);
+ max-width:100%;
+ max-height:100%;
+}
 
 #eventImg:hover{
- -moz-box-shadow: 0 10px 10px #ccc; 
- -webkit-box-shadow: 0 10px 10px #ccc; 
- box-shadow: 0 10px 10px #ccc;
+ -moz-box-shadow: 0 10px 10px #000; 
+ -webkit-box-shadow: 0 10px 10px rgba(42, 78, 110, 0.4); 
+ box-shadow: 0 10px 10px rgba(42, 78, 110, 0.4);
+ background-color: rgba(42, 78, 110, 0.4);
 }
 
 
@@ -41,11 +46,18 @@
 
 body {
     background-color: lightblue !important;
+	max-width:100%;
+	max-height:100%;
 }
 
 .jumbotron {
-    color: white !important;
-    background-color: navy !important;   
+	background-color: rgba(42, 78, 110, 0.24) !important;   
+	
+}
+
+#view > div.col-sm-6.col-md-3.ng-scope > div{
+	border: 1px solid rgba(221, 221, 221, 0);
+	background-color:rgba(0,0,0,0);
 }
 
 #tagbox {
@@ -59,6 +71,7 @@ body {
 }
 
 img { height:auto; width:100% }
+
 
 #tags {
     margin: 5px;
