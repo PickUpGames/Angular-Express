@@ -7,7 +7,6 @@ exports.index = function(req, res){
 	if (req.user)
 	{
 		var user = JSON.stringify(req.user.username); 
-  		console.log("USER = " +user);	
 	}
   res.locals.user = user;
   res.render('index');

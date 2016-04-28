@@ -10,7 +10,6 @@ function LoginCtrl($scope, $http, $location) {
 }
 
 function LogoutCtrl($http, $location) {
-    console.log("logging out");
      $http.get('/user/logout').then(
       function(res) {$location.path('/'); location.reload();},
       function(res) {});
@@ -54,7 +53,6 @@ function ProfileCtrl($scope, $http, $location) {
   {
     $http.put('/api/profile/A', $scope.form).
       success(function(res) {
-        console.log("A");
         $scope.status= res.status;
       });
   };
@@ -62,11 +60,9 @@ function ProfileCtrl($scope, $http, $location) {
   $scope.EditP = function ()
   {
     $scope.tags.push($scope.newTag);
-    console.log($scope.tags);
 
     $http.put('/api/profile/P', $scope.tags).
       success(function(res) {
-        console.log("P did it");
         $scope.status= res.status;
         $scope.newTag = [];
       });

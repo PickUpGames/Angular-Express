@@ -53,13 +53,10 @@ function authenticateUser(username, password, callback){
 // 
 function verifyProfile(req, callback){
   nullUser= {};
-  console.log("ID IS "+ req.session.user._id);
   Data = req.body;
   User.findOne({ username : Data.username}, function(err, user){
     if (user)
     {
-      // console.log(user._id.toString());
-      // console.log(req.session.user._id.toString());
       if (user._id.toString() == req.session.user._id.toString())
       {
         user.name = Data.name;
@@ -95,11 +92,9 @@ function verifyProfile(req, callback){
 //update tags
 function edit(type, req, callback){
   Data = req.body;
-  console.log("USer is " + req.session.username);
   User.findOne({username: req.session.username}, function(err, user){
     if (type=="P")
     {
-      console.log("tags are " + Data);
       user.tag = Data;
       user.save();
     }    
@@ -140,7 +135,7 @@ function createUser(newUser, callback){
 }
 
 function createEvent(username, newEvent,callback){
-  console.log("EVENTDATE"+newEvent.eventDate);
+  console.log("EVENTCREATED = "+newEvent.eventName);
   var tag = newEvent.tag.split(',');
   var sorted = [];
   for (var i = 0; i < tag.length; i++) {
@@ -178,7 +173,7 @@ function createEvent(username, newEvent,callback){
 
 
 exports.login = function(req, res){
-  // console.log("TRIED TO LOGIN | _id=" + req.body.username + " _pwd=" + req.body.password);
+  console.log("TRIED TO LOGIN | _id=" + req.body.username + " _pwd=" + req.body.password);
   var username = req.body.username;
   var password = req.body.password;
   
@@ -204,10 +199,10 @@ exports.register = function(req, res){
   createUser(req.body, function(err,user){
     if(err){
       res.status(401).send({ error: err });
-      console.log("ERROR | " + err);
+      // console.log("ERROR | " + err);
     }
     else {
-      console.log("REGISTER | OK");
+      // console.log("REGISTER | OK");
       req.session.username = user.username;
       res.json(true);
     }
@@ -230,8 +225,6 @@ exports.profile = function(req, res){
 
 exports.editprofile = function(req, res){
   var name = req.params.name;
-  console.log(name);
-  console.log("HEREW" + req.body);
   if (name == "A")
   {
     verifyProfile(req, function(newreq, status,user){
@@ -242,7 +235,7 @@ exports.editprofile = function(req, res){
   }
   else
     {edit(name, req, function(status, user){
-      console.log("EDIT SOMETHING");
+      res.send({user:user});
     });}
 };
 
@@ -274,11 +267,9 @@ exports.events = function (req, res) {
 exports.event = function (req, res) {
 /* MongoDB */
   var id = req.params.id
-  // console.log(req.params.id);
   if (id)
   {
     Event.find({"_id": id}, function(err, event){
-      // console.log(event.eventName);
       if (err) throw err;
       res.json({
         event: event[0],
@@ -294,7 +285,6 @@ exports.event = function (req, res) {
 // POST
 
 exports.addEvent = function (req, res) {
-  // console.log(req.body);
 
   if(req.user){
     var username = req.user.username;
@@ -312,9 +302,7 @@ exports.addEvent = function (req, res) {
 };
 
 exports.attendEvent = function (req, res) {
-  // console.log(req.body);
   var id = req.params.id
-  // console.log(req.params.id);
   if (id) {
     Event.findOne({ _id : id }, function (err, event){
       if (event.guests < event.maxGuests)

@@ -14,7 +14,7 @@ function AddEventCtrl($scope, $http, $location) {
       );
     }
     else{
-      console.log("ENTER STUFF");
+      console.log("Enter name and type.");
     }
   };
 }
@@ -24,7 +24,6 @@ function EventCtrl($scope, $http) {
   $http.get('/api/events').
     success(function(data, status, headers, config) {
       $scope.events = data.events;
-      console.log(data.events);
       $scope.user = data.user;
     });
 }
@@ -33,7 +32,6 @@ function EventCtrl($scope, $http) {
 function ViewEventCtrl($scope, $http, $routeParams, $location) {
   $http.get('/api/event/' + $routeParams.id).
     success(function(data) {
-      console.log(data.event);
       $scope.event= data.event;
       $scope.user= data.user;
     });

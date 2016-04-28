@@ -7,6 +7,7 @@
     .form-group
       input#name(type="text", name='name', ng-model="form.name", placeholder='Name')
       br
-    button.btn.btn-success(ng-click="submit()")
-      span.glyphicon.glyphicon-send
-      |  Contact Developers
+    a(href="/")
+      button.btn.btn-success
+        span.glyphicon.glyphicon-send
+        |  Contact Developers
