@@ -23,11 +23,12 @@
 
 br
 .col-sm-6.col-md-3(ng-repeat="event in events | filter:search:false | orderBy:predicate:reverse")
-  h3 name={{event.eventName}}
   .thumbnail.tile.tile-medium
     a(href='viewEvent/{{event._id}}')
+      .caption
+        b {{event.eventName}}
       img#eventImg(src='/img/sports.png', alt='Sports')
-
+  
   //- p date={{event.eventDate}}
   //- p type={{event.eventType}}
 
