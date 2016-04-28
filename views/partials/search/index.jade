@@ -1,1 +1,34 @@
-p THIS IS THE SEARCH INDEX
+.jumbotron.text-center
+  h1 There are {{events.length}} events!
+#form
+  form(name='myform', role='form')
+    .form-group
+      button(ng-click="order('eventName')") name
+      span.sortorder(ng-show="predicate === 'eventName'", ng-class='{reverse:reverse}')
+      button(ng-click="order('eventDate')") date
+      span.sortorder(ng-show="predicate === 'eventDate'", ng-class='{reverse:reverse}')
+      button(ng-click="order('eventType')") type
+      span.sortorder(ng-show="predicate === 'eventType'", ng-class='{reverse:reverse}')
+    .form-group  
+      label
+      | Search for: 
+      input(ng-model='search.$')     
+    
+
+
+
+
+  
+  
+
+br
+.col-sm-6.col-md-3(ng-repeat="event in events | filter:search:false | orderBy:predicate:reverse")
+  h3 name={{event.eventName}}
+  .thumbnail.tile.tile-medium
+    a(href='viewEvent/{{event._id}}')
+      img#eventImg(src='/img/sports.png', alt='Sports')
+
+  //- p date={{event.eventDate}}
+  //- p type={{event.eventType}}
+
+  

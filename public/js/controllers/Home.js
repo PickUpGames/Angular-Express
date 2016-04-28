@@ -19,8 +19,14 @@ function IndexCtrl($scope, $http) {
 
 
 function SearchCtrl($scope, $http) {
-  // $http.get('/api/rec').
-  //   success(function(data, status, headers, config) {
-  //     $scope.user = data.user;
-  //   });
+    $http.get('/api/events').success(function(data, status, headers, config){
+    $scope.events = data.events;
+    $scope.predicate = 'eventDate';
+    $scope.reverse = true;
+    $scope.order = function(predicate) {
+      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+      $scope.predicate = predicate;
+    };
+  });
+
 }

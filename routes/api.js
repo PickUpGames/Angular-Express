@@ -265,7 +265,7 @@ exports.events = function (req, res) {
       });
     });
     res.json({
-      events: events,
+      events: db,
       user: req.user
     });
   }); 

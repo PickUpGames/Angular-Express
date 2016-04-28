@@ -13,10 +13,11 @@
 }
 
 
-/*#form {
+#form {
     width: 40%;
     margin: 0 30%; 
-}*/
+    text-align: center;
+}
 
 #logo{
     max-width: 170px;
