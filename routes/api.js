@@ -125,6 +125,12 @@ function createUser(newUser, callback){
 
 function createEvent(username, newEvent,callback){
   console.log("EVENTDATE"+newEvent.eventDate);
+  var tag = newEvent.tag.split(',');
+  var sorted = [];
+  for (var i = 0; i < tag.length; i++) {
+    sorted.push(tag[i].trim().toLowerCase());
+  }
+  sorted.sort();
   var eventData = {
 
     hostName: username,
@@ -134,7 +140,8 @@ function createEvent(username, newEvent,callback){
     eventDate: newEvent.eventDate,
     eventDescription: newEvent.eventDescription,
     guests: 1,
-    maxGuests: newEvent.maxGuests
+    maxGuests: newEvent.maxGuests,
+    tag: sorted
   };
 
 
@@ -284,12 +291,19 @@ exports.attendEvent = function (req, res) {
   // console.log(req.params.id);
   if (id) {
     Event.findOne({ _id : id }, function (err, event){
-      event.guests += 1;
-      event.save();
+      if (event.guests < event.maxGuests)
+      {
+        event.guests += 1;
+        event.save();
+        res.json(true);
+      }
+      else
+      {
+        res.send({error: true});
+      }
     });
-    res.json(true);
   } else {
-    res.json(false);
+    res.send({error: true});
   }
 };
 

@@ -1,17 +1,25 @@
-#form
+.col-sm-1.col-md-4
+.col-sm-10.col-md-4
   div(id='form-padding')
-    h4 {{event.eventName}} 
+    h1
+      b {{event.eventName}} 
   div(id='form-padding')
     img(src='/img/tennis.jpg')
+    .col-sm-2.col-md-10
+      h4 Location:{{event.location}} 
+      h4 Time: 
+        input(type='date', value='{{event.eventDate}}', readonly='')
+      h4 Attending: {{event.guests}}/{{event.maxGuests}} guests
+      h4 Description: {{event.eventDescription}}
+    .col-sm-2.col-md-2(id='form-padding')
+      h4 Tags: 
+        #tagbox(ng-repeat="each in event.tag")
+          {{each}}
     br
-    | Location:{{event.location}} 
-    br
-    | Time: 
-    input(type='date', value='{{event.eventDate}}', readonly='')
-    br
-    | Attending {{event.guests}}/{{event.maxGuests}}
-    div {{event.eventDescription}}
-    form(role='form')
-      button.btn.btn-success.btn-block(ng-click='attend()')
-        span.glyphicon.glyphicon-ok
-        |  Attend
+  form(role='form')
+    button.btn.btn-success.btn-block(ng-click='attend()')
+      span.glyphicon.glyphicon-ok
+      |  Attend
+  .alert.alert-danger(ng-show='error') {{error}}
+    
+
