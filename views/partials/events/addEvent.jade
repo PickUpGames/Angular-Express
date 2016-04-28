@@ -42,6 +42,11 @@
           |  Max Guests
         input.form-control(type='number', ng-model='form.maxGuests', name='maxGuests', placeholder='Enter max amount of guests allowed.')
       .form-group
+        label(for='tag')
+          span.glyphicon.glyphicon-time
+          |  Tags
+        input.form-control(type='text', ng-model='form.tag', name='tag', placeholder='Enter tags separated by commas.')
+      .form-group
         label(for='eDescr')
           span.glyphicon.glyphicon-time
           |  Event Description

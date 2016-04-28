@@ -40,7 +40,16 @@ function ViewEventCtrl($scope, $http, $routeParams, $location) {
   $scope.attend = function(){
     if ($scope.user)
     {$http.post('/api/event-attend/' + $routeParams.id).then(
-        function(res) {$location.path('/');}
+        function(res) {
+          if (!res.data.error)
+          {
+            $location.path('/');
+          }
+          else
+          {
+            $scope.error = "Could not join event.";
+          }
+        }
     );}
     else
     {

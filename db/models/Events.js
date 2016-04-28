@@ -9,6 +9,7 @@ var eventSchema = new mongoose.Schema({
 	eventDescription: String,
 	guests: Number,
 	maxGuests: Number,
+	tag: [String]
 });
 
 var Event = mongoose.model('Event',eventSchema);
