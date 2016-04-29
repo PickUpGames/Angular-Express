@@ -76,4 +76,18 @@ img { height:auto; width:100% }
 
 #tags {
     margin: 5px;
+    width: 80%;
+    display: inline;
 }
+
+form {
+    display: inline;
+}
+
+button.close {
+    display: inline;
+}
+/*
+input {
+    display: inline !impor;
+}*/

@@ -59,13 +59,27 @@ function ProfileCtrl($scope, $http, $location) {
 
   $scope.EditP = function ()
   {
-    $scope.tags.push($scope.newTag);
 
+    $scope.tags.push($scope.newTag);
+    console.log($scope.tags)
     $http.put('/api/profile/P', $scope.tags).
       success(function(res) {
         $scope.status= res.status;
         $scope.newTag = [];
       });
   };
+
+  $scope.close = function(E)
+  {
+    console.log(E);
+    var ind = $scope.tags.indexOf(E);
+    console.log(ind);
+    $scope.tags.splice(ind,1);
+    console.log($scope.tags);
+    $http.put('/api/profile/P', $scope.tags).
+      success(function(res) {
+        $scope.status= res.status;
+      });
+  }
 
 }
