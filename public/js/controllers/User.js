@@ -83,3 +83,30 @@ function ProfileCtrl($scope, $http, $location) {
   }
 
 }
+
+function ContactCtrl($scope, $http, $location, $timeout) {
+
+  $scope.sendMail = function () {
+            console.log("GOOGO!");
+            var data = ({
+                contactName : $scope.form.contactName,
+                contactEmail : "anon@PUG.com",
+                contactMsg : $scope.form.contactMsg
+            });
+            $http.post('/contact-form', data).
+                success(function(data, status, headers, config) {
+                    $scope.status = "Sent!"
+                    $scope.ok = 1; 
+                    // $location.path('/');
+                    $timeout(function () {
+                      $location.path('/');
+                    }, 1000); 
+                }).
+                error(function(data, status, headers, config) {
+                    $scope.ok = 0;
+                    $scope.status = "Contact Failed!"
+
+                });
+ 
+        };
+  }

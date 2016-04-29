@@ -9,6 +9,7 @@ var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
   path = require('path');
+  
 
 
 //implements user sessions
@@ -16,7 +17,6 @@ var expressSession = require('express-session');
 
 //initalize the app
 var app = module.exports = express();
-
 /**
  * Configuration
  */
@@ -33,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use( expressSession({
   secret: 'somesecretrandomstring'
 }));
+
 
 
 
@@ -87,7 +88,7 @@ app.delete('/api/clear', api.clear)
 //profile
 app.get('/api/profile', api.profile); //return user profile from db
 app.put('/api/profile/:name', api.editprofile);
-
+app.post('/contact-form', api.contact);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

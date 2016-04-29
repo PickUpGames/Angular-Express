@@ -1,13 +1,14 @@
 .jumbotron.text-center
   h1 Contact
-  form(role='form')
+  form#form(role='form')
     .form-group
-      textarea#contact(name='comment', ng-model="form.comment", placeholder='Inquiries here')
+      textarea#contact(name='comment', ng-model="form.contactMsg", placeholder='Inquiries here')
       br
     .form-group
-      input#name(type="text", name='name', ng-model="form.name", placeholder='Name')
+      input#name(type="text", name='name', ng-model="form.contactName", placeholder='Name')
       br
-    a(href="/")
-      button.btn.btn-success
-        span.glyphicon.glyphicon-send
-        |  Contact Developers
+    button.btn.btn-success(ng-click="sendMail()")
+      span.glyphicon.glyphicon-send
+      |  Contact Developers
+    .alert.alert-success(ng-show='status && ok') {{status}}
+    .alert.alert-danger(ng-show='status && !ok') {{status}}

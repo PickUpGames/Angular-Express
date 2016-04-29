@@ -11,6 +11,18 @@ var Event = mongoose.model('Event');
 mongoose.connect('mongodb://localhost:27017/users');
 
 
+//mailer
+nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user:'PickUpGamesHelp@gmail.com',
+    pass: 'PUG1234567'
+  }
+});
+
+
+
 // Middleware - App checks for user before using any routes
 
 
@@ -241,6 +253,24 @@ exports.editprofile = function(req, res){
 };
 
 
+exports.contact = function(req, res){
+  var data = req.body;
+    // console.log(data);
+    transporter.sendMail({
+        from: 'PickUpGamesHelp@gmail.com',
+        to: 'PickUpGamesHelp@gmail.com',
+        subject: 'Message from ' + data.contactName,
+        text: data.contactMsg
+    }
+    // , function(err, info)
+    // {
+    //   console.log(err);
+    //   console.log(info);
+    // }
+    );
+ 
+    res.json(data);
+}
 
 //*********************************************************************************************************
 //_________________________________________________EVENTS___________________________________________________

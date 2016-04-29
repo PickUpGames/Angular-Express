@@ -28,6 +28,7 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
       })
       .when('/contact',{
             templateUrl: 'profile/contact'
+            ,controller: ContactCtrl
       })
       .when('/faq',{
             templateUrl: 'profile/faq'
