@@ -340,6 +340,10 @@ exports.attendEvent = function (req, res) {
       {
         event.guests += 1;
         event.save();
+        User.findOne({username: req.session.username}, function(err, user){
+          user.regEvents.push(id);
+          user.save();
+        });
         res.json(true);
       }
       else
@@ -353,6 +357,31 @@ exports.attendEvent = function (req, res) {
 };
 
 // PUT
+
+//This function lets the user remove himself from the event
+exports.cancelEvent = function (req, res) {
+  var id = req.params.id
+  if (id) {
+    Event.findOne({ _id : id }, function (err, event){
+      if (event.guests)
+      {
+        event.guests -= 1;
+        event.save();
+        User.findOne({username: req.session.username}, function(err, user){
+          user.regEvents.splice(id,1);
+          user.save();
+        });
+        res.json(true);
+      }
+      else
+      {
+        res.send({error: true});
+      }
+    });
+  } else {
+    res.send({error: true});
+  }
+};
 
 // DELETE
 

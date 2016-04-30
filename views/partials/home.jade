@@ -2,6 +2,18 @@
   h1(ng-show="tagline") {{tagline}}!
   h1(ng-show="!tagline") Please login to see recommended events.
 
+h1(ng-show="user && !eventList.length && !joinedEvents.length") Add some preferences in your Profile to get recommendations. 
+
+.col-sm-6.col-md-3(ng-repeat='joined in joinedEvents')
+  #joined.thumbnail.tile.tile-medium
+    a(href='viewEvent/{{joined._id}}')
+      .caption
+        b {{joined.eventName}}
+      img#eventImg(ng-show="joined.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
+      img#eventImg(ng-show="joined.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
+      img#eventImg(ng-show="joined.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
+      img#eventImg(ng-show="joined.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
+      img#eventImg(ng-show="joined.eventType=='Other'",src='/img/other.png', alt='other')
 .col-sm-6.col-md-3(ng-repeat='event in eventList')
   .thumbnail.tile.tile-medium
     a(href='viewEvent/{{event._id}}')

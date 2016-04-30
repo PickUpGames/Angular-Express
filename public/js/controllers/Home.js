@@ -9,7 +9,16 @@ function IndexCtrl($scope, $http) {
 	$http.get('/api/events').success(function(data, status, headers, config){
 		$scope.events = data.events;
     	$scope.tagline = 'Welcome, ' + data.user.name + '. Time to play!';
-    	$scope.eventList = []; 
+    	$scope.eventList = [];
+    	$scope.joinedEvents = [];
+		for(var i = 0; i < $scope.events.length; i++)
+      	{
+        	if(data.user.regEvents.indexOf($scope.events[i]._id.toString()) != -1)
+        	{
+          		$scope.joinedEvents.push($scope.events[i]);
+          		// console.log($scope.events[i]._id);
+        	}
+      	}
 		if(data.user.tag.length > 0) {
 		//loop through events list
 			for (var i = 0; i < $scope.events.length; i ++){
@@ -20,14 +29,18 @@ function IndexCtrl($scope, $http) {
 					// check if user tag is in event tag list.
 					if ($scope.cur_tags.indexOf(data.user.tag[j]) != -1){
 						
-						$scope.eventList.push($scope.events[i]);
-						break;
+						if ($scope.joinedEvents.indexOf($scope.events[i]) == -1)
+						{
+							$scope.eventList.push($scope.events[i]);
+							break;
+						}
 					} else {
 						//false
 					}
 				}
 			}
 		}
+
 	});
 }
 

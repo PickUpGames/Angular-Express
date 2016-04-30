@@ -21,9 +21,12 @@
           {{each}}
 
   form(role='form')
-      button.btn.btn-success.btn-block(ng-click='attend()')
+      button.btn.btn-success.btn-block(ng-click='attend()', ng-show='attended==-1')
         span.glyphicon.glyphicon-ok
         |  Attend
+      button.btn.btn-danger.btn-block(ng-click='cancel()', ng-show='attended>-1')
+        span.glyphicon.glyphicon-ok
+        |  Cancel
     .alert.alert-danger(ng-show='error') {{error}}
   
     

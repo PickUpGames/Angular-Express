@@ -7,7 +7,8 @@ var userSchema = new mongoose.Schema({
 	birthday: String,
 	rating: {type: Number, default: 5.0},
 	location: Number,
-	tag: [String]
+	tag: [String],
+	regEvents: [String]
 });
 
 var User = mongoose.model('User', userSchema);
