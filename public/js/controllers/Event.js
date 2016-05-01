@@ -32,6 +32,7 @@ function EventCtrl($scope, $http) {
       {
         if($scope.user.regEvents.indexOf($scope.dbevents[i]._id.toString()) == -1)
         {
+          $scope.dbevents[i].eventName = $scope.dbevents[i].eventName.substr(0, 12) + '..';
           $scope.events.push($scope.dbevents[i]);
         }
       }  

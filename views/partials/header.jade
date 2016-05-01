@@ -17,7 +17,7 @@ nav.navbar.navbar-inverse
           | Profile
           b.caret
         ul.dropdown-menu
-          li
+          li(ng-show="user")
             a(href='/viewprofile') View Profile
           // li><a href = "/manageprofile">Manage Profile</a></li>
           li

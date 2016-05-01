@@ -15,6 +15,7 @@ function IndexCtrl($scope, $http) {
       	{
         	if(data.user.regEvents.indexOf($scope.events[i]._id.toString()) != -1)
         	{
+        		$scope.events[i].eventName = $scope.events[i].eventName.substr(0, 12) + '...';
           		$scope.joinedEvents.push($scope.events[i]);
           		// console.log($scope.events[i]._id);
         	}
@@ -31,6 +32,7 @@ function IndexCtrl($scope, $http) {
 						
 						if ($scope.joinedEvents.indexOf($scope.events[i]) == -1)
 						{
+							$scope.events[i].eventName = $scope.events[i].eventName.substr(0, 12) + '..';
 							$scope.eventList.push($scope.events[i]);
 							break;
 						}
@@ -49,6 +51,10 @@ function IndexCtrl($scope, $http) {
 function SearchCtrl($scope, $http) {
     $http.get('/api/events').success(function(data, status, headers, config){
     $scope.events = data.events;
+    for (var i=0; i< $scope.events.length; i++)
+    {
+    	$scope.events[i].eventName = $scope.events[i].eventName.substr(0, 12) + '..';
+    }
     $scope.predicate = 'eventDate';
     $scope.reverse = true;
     $scope.order = function(predicate) {

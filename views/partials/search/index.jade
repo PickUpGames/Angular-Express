@@ -21,7 +21,7 @@
     .thumbnail.tile.tile-medium
       a(href='viewEvent/{{event._id}}')
         .caption
-          b {{event.eventName}}
+          b#eventTitle {{event.eventName}}
         img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
         img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
         img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
