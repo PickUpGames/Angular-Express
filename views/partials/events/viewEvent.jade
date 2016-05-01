@@ -21,13 +21,28 @@
           {{each}}
 
   form(role='form')
-      button.btn.btn-success.btn-block(ng-click='attend()', ng-show='attended==-1')
-        span.glyphicon.glyphicon-ok
-        |  Attend
-      button.btn.btn-danger.btn-block(ng-click='cancel()', ng-show='attended>-1')
-        span.glyphicon.glyphicon-ok
-        |  Cancel
-    .alert.alert-danger(ng-show='error') {{error}}
-  
-    
+    .row
+      .col-sm-1.col-md-3
+      .col-sm-10.col-md-6
+        button.btn.btn-success.btn-block(ng-click='attend()', ng-show='attended==-1')
+          span.glyphicon.glyphicon-ok
+          |  Attend
+        button.btn.btn-danger.btn-block(ng-click='cancel()', ng-show='attended>-1')
+          span.glyphicon.glyphicon-ok
+          |  Cancel
+        .alert.alert-danger(ng-show='error') {{error}}
+      .col-sm-1.col-md-3
+    .row#form-padding(ng-show="user")
+      .col-sm-1.col-md-3
+      .col-sm-10.col-md-6
+        textarea(ng-model="form.comment.text", placeholder="No spam please!")
+        button.btn.btn-success.btn-block(ng-click='comment()')
+          span.glyphicon.glyphicon-ok
+          |  Comment
+        div#comment-area(ng-repeat="comment in event.comments | orderBy: '+' : reverse")
+          div
+            p#comment {{comment.name}}: {{comment.text}}
+
+        //- div#comment-area(ng-repeat="comment in [{'name':'John', 'text': 'RARW'},{'name':'John', 'text': 'POOP'}] | orderBy:'+'")
+
 

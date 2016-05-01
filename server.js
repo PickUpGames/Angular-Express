@@ -77,6 +77,7 @@ app.get('/api/events', api.events); //return all events from db
 app.get('/api/event/:id', api.event); //return specific event from db
 app.post('/api/event', requireUser, api.addEvent); //add new event to db
 app.post('/api/event-attend/:id', requireUser, api.attendEvent);
+app.post('/api/comment/:id', requireUser, api.comment)
 // app.put('/api/event/:id', api.editEvent);  //edit existing event in db
 app.delete('/api/event-cancel/:id', api.cancelEvent); //remove event from user
 

@@ -71,7 +71,7 @@ body {
     /*margin: 5px;*/
 }
 
-img { height:auto; width:100% }
+img { height:100%; width:100% }
 
 
 #tags {
@@ -96,4 +96,11 @@ input {
     border-style: solid !important;
     border-color: red !important;
     border-width: medium !important;
+}
+
+#comment {
+    /*width: 10 !important;*/
+    padding: 2px;
+    border: 2px solid black;
+    /*margin: 5px;*/
 }

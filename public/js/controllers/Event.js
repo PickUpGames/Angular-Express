@@ -86,6 +86,22 @@ function ViewEventCtrl($scope, $http, $routeParams, $location) {
           { $scope.error = "Could not cancel event.";}
         }
        );
-  };
   }
+  };
+
+  $scope.comment = function(){
+    if ($scope.user)
+    {
+        $scope.form.comment.name = $scope.user.username;
+        $http.post('/api/comment/'  + $routeParams.id, $scope.form).then(
+        function(res) {
+          // console.log(res);
+          if (res.data)
+          { $scope.event= res.data.event;}
+          else
+          { $scope.error = "Could not comment event.";}
+        }
+       );
+    }
+  };
 }

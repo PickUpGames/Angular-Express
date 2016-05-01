@@ -363,15 +363,37 @@ exports.cancelEvent = function (req, res) {
   var id = req.params.id
   if (id) {
     Event.findOne({ _id : id }, function (err, event){
-      if (event.guests)
+      if (event.guests > 0)
       {
         event.guests -= 1;
         event.save();
         User.findOne({username: req.session.username}, function(err, user){
-          user.regEvents.splice(id,1);
+          user.regEvents.splice(user.regEvents.indexOf(id),1);
           user.save();
         });
         res.json(true);
+      }
+      else
+      {
+        res.send({user: user});
+      }
+    });
+  } else {
+    res.send({error: true});
+  }
+};
+
+
+exports.comment = function (req, res) {
+  var id = req.params.id
+  if (id) {
+    Event.findOne({ _id : id }, function (err, event){
+      if (event)
+      {
+        // console.log(req.body.comment);
+        event.comments.push(req.body.comment);
+        event.save();
+        res.json({event:event});
       }
       else
       {
@@ -381,8 +403,5 @@ exports.cancelEvent = function (req, res) {
   } else {
     res.send({error: true});
   }
+
 };
-
-// DELETE
-
-
