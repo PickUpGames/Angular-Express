@@ -1,37 +1,32 @@
 .jumbotron.text-center
   h1 There are {{events.length}} events!
-#form
-  form(name='myform', role='form')
-    .form-group
-      button(ng-click="order('eventName')") name
-      span.sortorder(ng-show="predicate === 'eventName'", ng-class='{reverse:reverse}')
-      button(ng-click="order('eventDate')") date
-      span.sortorder(ng-show="predicate === 'eventDate'", ng-class='{reverse:reverse}')
-      button(ng-click="order('eventType')") type
-      span.sortorder(ng-show="predicate === 'eventType'", ng-class='{reverse:reverse}')
-    .form-group  
-      label
-      | Search for: 
-      input(ng-model='search.$')     
-    
-
-
-
-
-  
-  
-
-br
-.col-sm-6.col-md-3(ng-repeat="event in events | filter:search:false | orderBy:predicate:reverse")
-  .thumbnail.tile.tile-medium
-    a(href='viewEvent/{{event._id}}')
-      .caption
-        b {{event.eventName}}
-      img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
-      img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
-      img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
-      img#eventImg(ng-show="event.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
-      img#eventImg(ng-show="event.eventType=='Other'",src='/img/other.png', alt='other')
+.col-sm-1.col-md-2
+.col-sm-10.col-md-8
+  #form
+    form(name='myform', role='form')
+      .form-group
+        button(ng-click="order('eventName')") name
+        span.sortorder(ng-show="predicate === 'eventName'", ng-class='{reverse:reverse}')
+        button(ng-click="order('eventDate')") date
+        span.sortorder(ng-show="predicate === 'eventDate'", ng-class='{reverse:reverse}')
+        button(ng-click="order('eventType')") type
+        span.sortorder(ng-show="predicate === 'eventType'", ng-class='{reverse:reverse}')
+      .form-group  
+        label
+        | Search for: 
+        input(ng-model='search.$')     
+      
+  br
+  .col-sm-6.col-md-3(ng-repeat="event in events | filter:search:false | orderBy:predicate:reverse")
+    .thumbnail.tile.tile-medium
+      a(href='viewEvent/{{event._id}}')
+        .caption
+          b {{event.eventName}}
+        img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
+        img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
+        img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
+        img#eventImg(ng-show="event.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
+        img#eventImg(ng-show="event.eventType=='Other'",src='/img/other.png', alt='other')
   
   
   //- p date={{event.eventDate}}

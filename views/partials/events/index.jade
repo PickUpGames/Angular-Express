@@ -1,19 +1,21 @@
 .jumbotron.text-center
   h1 There are {{events.length}} events!
-.col-sm-6.col-md-3
-  .thumbnail.tile.tile-medium
-    a(href='/addEvent')
-      .caption
-        b [Add Event]
-      img#eventImg(src='/img/addEventImg.png', alt='AddEvent')
-.col-sm-6.col-md-3(ng-repeat='event in events')
-  .thumbnail.tile.tile-medium
-    a(href='viewEvent/{{event._id}}')
-      .caption
-        b {{event.eventName}}
-      img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
-      img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
-      img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
-      img#eventImg(ng-show="event.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
-      img#eventImg(ng-show="event.eventType=='Other'",src='/img/other.png', alt='other')
+.col-sm-1.col-md-2
+.col-sm-10.col-md-8
+  .col-sm-6.col-md-3
+    .thumbnail.tile.tile-medium
+      a(href='/addEvent')
+        .caption
+          b [Add Event]
+        img#eventImg(src='/img/addEventImg.png', alt='AddEvent')
+  .col-sm-6.col-md-3(ng-repeat='event in events')
+    .thumbnail.tile.tile-medium
+      a(href='viewEvent/{{event._id}}')
+        .caption
+          b {{event.eventName}}
+        img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
+        img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
+        img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
+        img#eventImg(ng-show="event.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
+        img#eventImg(ng-show="event.eventType=='Other'",src='/img/other.png', alt='other')
   
