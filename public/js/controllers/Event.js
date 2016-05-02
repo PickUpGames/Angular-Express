@@ -68,14 +68,12 @@ function ViewEventCtrl($scope, $http, $routeParams, $location) {
       $scope.event= data.event;
       $scope.user= data.user;
 
-      for(var i = 0; i < $scope.dbevents.length; i++)
-      {
-        if ($scope.events[i].eventType == 'Outdoor Sport') { $scope.events[i].src = '/img/sports.png'; $scope.events[i].alt= 'Sports'}
-      else if ($scope.events[i].eventType == 'Indoor Sport') { $scope.events[i].src = '/img/indoor.png'; $scope.events[i].alt= 'Indoor'}
-      else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
-      else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC.png'; $scope.events[i].alt= 'PC'}
-      else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
-      }
+      if ($scope.event.eventType == 'Outdoor Sport') { $scope.event.src = '/img/sports.png'; $scope.event.alt= 'Sports'}
+      else if ($scope.event.eventType == 'Indoor Sport') { $scope.event.src = '/img/indoor.png'; $scope.event.alt= 'Indoor'}
+      else if ($scope.event.eventType == 'Indoor Game') { $scope.event.src = '/img/board.png'; $scope.event.alt= 'Game'}
+      else if ($scope.event.eventType == 'Computer Game') { $scope.event.src = '/img/PC.png'; $scope.event.alt= 'PC'}
+      else if ($scope.event.eventType == 'Other') { $scope.event.src = '/img/other.png'; $scope.event.alt= 'Other'}
+      
       // console.log($scope.user.regEvents);
       // console.log($scope.event._id.toString());
       $scope.attended = ($scope.user.regEvents.indexOf($scope.event._id.toString()));
