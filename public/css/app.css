@@ -67,7 +67,6 @@ body {
 #mainContainer {
 	background-color: rgba(211,211,211, 0.33) !important;   
 	height:100vh;
-    background-image:url("../img/home_bg.png");
     padding-top:10px;
 
 }
@@ -78,6 +77,7 @@ body {
 .navbar {
 	margin-bottom:0px !important;
 	border-radius: 0px !important;
+    min-height:30px !important;
 }
 
 
@@ -143,4 +143,5 @@ ul#menu.footer.nav.navbar-nav
 .navbar.navbar-inverse.navbar-fixed-bottom
 {
     text-align: center;
+    height:40px;
 }
