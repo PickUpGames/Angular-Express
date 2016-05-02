@@ -117,4 +117,14 @@ input {
     float:right !important;
 }
 
-/*#eventTitle {font-size: 16px; font-size: 0.9vw;}*/
+ul#menu.footer.nav.navbar-nav
+{
+    display: inline-block !important;
+    float: none !important;
+    vertical-align: top !important;
+}
+
+.navbar.navbar-inverse.navbar-fixed-bottom
+{
+    text-align: center;
+}
