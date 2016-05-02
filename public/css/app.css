@@ -49,6 +49,8 @@ body {
     background-color: lightblue !important;
 	max-width:100%;
 	max-height:100%;
+    margin-bottom: 50px !important;
+    margin-top: 50px !important;
 }
 
 .jumbotron {
@@ -103,6 +105,10 @@ input {
     padding: 2px;
     border: 2px solid black;
     /*margin: 5px;*/
+}
+
+.right {
+    float:right !important;
 }
 
 /*#eventTitle {font-size: 16px; font-size: 0.9vw;}*/
