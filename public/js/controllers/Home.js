@@ -16,10 +16,13 @@ function IndexCtrl($scope, $http) {
       	{
       		// $scope.events[i].img = {'src':'','alt':''};
       		if ($scope.events[i].eventType == 'Outdoor Sport') { $scope.events[i].src = '/img/sports.png'; $scope.events[i].alt= 'Sports'}
-			else if ($scope.events[i].eventType == 'Indoor Sport') { $scope.events[i].src = '/img/indoor.png'; $scope.events[i].alt= 'Indoor'}
-			else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
-			else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC.png'; $scope.events[i].alt= 'PC'}
-			else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
+			        else if ($scope.events[i].eventType == 'Football') { $scope.events[i].src = '/img/football.png'; $scope.events[i].alt= 'Football'}
+      else if ($scope.events[i].eventType == 'Basketball') { $scope.events[i].src = '/img/basketball.png'; $scope.events[i].alt= 'Basketball'}
+      else if ($scope.events[i].eventType == 'Soccer') { $scope.events[i].src = '/img/soccer.png'; $scope.events[i].alt= 'Soccer'}
+      else if ($scope.events[i].eventType == 'Tennis') { $scope.events[i].src = '/img/tennis.png'; $scope.events[i].alt= 'Tennis'}
+      else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
+      else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC2.jpeg'; $scope.events[i].alt= 'PC'}
+      else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
 			// console.log($scope.events[i].src);
         	if(data.user.regEvents.indexOf($scope.events[i]._id.toString()) != -1)
         	{
@@ -63,10 +66,13 @@ function SearchCtrl($scope, $http) {
     {
     	$scope.events[i].eventName = $scope.events[i].eventName.substr(0, 12) + '..';
     	if ($scope.events[i].eventType == 'Outdoor Sport') { $scope.events[i].src = '/img/sports.png'; $scope.events[i].alt= 'Sports'}
-			else if ($scope.events[i].eventType == 'Indoor Sport') { $scope.events[i].src = '/img/indoor.png'; $scope.events[i].alt= 'Indoor'}
-			else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
-			else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC.png'; $scope.events[i].alt= 'PC'}
-			else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
+	  else if ($scope.events[i].eventType == 'Football') { $scope.events[i].src = '/img/football.png'; $scope.events[i].alt= 'Football'}
+      else if ($scope.events[i].eventType == 'Basketball') { $scope.events[i].src = '/img/basketball.png'; $scope.events[i].alt= 'Basketball'}
+      else if ($scope.events[i].eventType == 'Soccer') { $scope.events[i].src = '/img/soccer.png'; $scope.events[i].alt= 'Soccer'}
+      else if ($scope.events[i].eventType == 'Tennis') { $scope.events[i].src = '/img/tennis.png'; $scope.events[i].alt= 'Tennis'}
+      else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
+      else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC.png'; $scope.events[i].alt= 'PC'}
+      else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
     }
     $scope.predicate = 'eventDate';
     $scope.reverse = true;
@@ -80,5 +86,5 @@ function SearchCtrl($scope, $http) {
 
 
 function ImageCtrl($scope){
-	
+
 }
