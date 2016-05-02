@@ -3,7 +3,8 @@ extends layout
 block body
   div(ng-init="user = #{user}")
     include ./partials/header.jade
-  div#view(ng-view)
+  #mainContainer.container
+    div#view(ng-view)
   div
     include ./partials/footer.jade
 
