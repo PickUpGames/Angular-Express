@@ -15,7 +15,7 @@
 
 #pageName.jumbotron.text-center{
     position:fixed;
-    bottom:0;
+    bottom:-20;
     left:-25px;
     background-color:rgba(2, 2, 2, 0.00) !important;
     width:15%;
@@ -77,7 +77,7 @@ body {
 .navbar {
 	margin-bottom:0px !important;
 	border-radius: 0px !important;
-    min-height:30px !important;
+    min-height:10px !important;
 }
 
 
@@ -139,9 +139,11 @@ ul#menu.footer.nav.navbar-nav
     display: inline-block !important;
     float: none !important;
     vertical-align: top !important;
+    position:relative;
+    bottom:15px;
 }
 .navbar.navbar-inverse.navbar-fixed-bottom
 {
     text-align: center;
-    height:40px;
+    height:20px;
 }
