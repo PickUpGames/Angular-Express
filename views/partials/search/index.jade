@@ -20,11 +20,7 @@
   .col-sm-6.col-md-3(ng-repeat="event in events | filter:search:false | orderBy:predicate:reverse")
     .thumbnail.tile.tile-medium
       a(href='viewEvent/{{event._id}}')
-        img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
-        img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
-        img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
-        img#eventImg(ng-show="event.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
-        img#eventImg(ng-show="event.eventType=='Other'",src='/img/other.png', alt='other')
+        img#eventImg(ng-show="event.eventType'", src='{{event.src}}', alt='{{event.alt}}')
         .caption
           b#eventTitle {{event.eventName}}
   

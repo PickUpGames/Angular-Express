@@ -4,15 +4,23 @@
 // if there is a user, find local events that are to user preferences
 
 function IndexCtrl($scope, $http) {
-	
+
 	$scope.tagline = 'Please login to see recommendations';
 	$http.get('/api/events').success(function(data, status, headers, config){
 		$scope.events = data.events;
+		
     	$scope.tagline = 'Welcome, ' + data.user.name + '. Time to play!';
     	$scope.eventList = [];
     	$scope.joinedEvents = [];
 		for(var i = 0; i < $scope.events.length; i++)
       	{
+      		// $scope.events[i].img = {'src':'','alt':''};
+      		if ($scope.events[i].eventType == 'Outdoor Sport') { $scope.events[i].src = '/img/sports.png'; $scope.events[i].alt= 'Sports'}
+			else if ($scope.events[i].eventType == 'Indoor Sport') { $scope.events[i].src = '/img/indoor.png'; $scope.events[i].alt= 'Indoor'}
+			else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
+			else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC.png'; $scope.events[i].alt= 'PC'}
+			else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
+			// console.log($scope.events[i].src);
         	if(data.user.regEvents.indexOf($scope.events[i]._id.toString()) != -1)
         	{
         		$scope.events[i].eventName = $scope.events[i].eventName.substr(0, 12) + '...';
@@ -54,6 +62,11 @@ function SearchCtrl($scope, $http) {
     for (var i=0; i< $scope.events.length; i++)
     {
     	$scope.events[i].eventName = $scope.events[i].eventName.substr(0, 12) + '..';
+    	if ($scope.events[i].eventType == 'Outdoor Sport') { $scope.events[i].src = '/img/sports.png'; $scope.events[i].alt= 'Sports'}
+			else if ($scope.events[i].eventType == 'Indoor Sport') { $scope.events[i].src = '/img/indoor.png'; $scope.events[i].alt= 'Indoor'}
+			else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
+			else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC.png'; $scope.events[i].alt= 'PC'}
+			else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
     }
     $scope.predicate = 'eventDate';
     $scope.reverse = true;
@@ -63,4 +76,9 @@ function SearchCtrl($scope, $http) {
     };
   });
 
+}
+
+
+function ImageCtrl($scope){
+	
 }
