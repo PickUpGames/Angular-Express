@@ -5,17 +5,17 @@
   .col-sm-6.col-md-3
     .thumbnail.tile.tile-medium
       a(href='/addEvent')
+        img#eventImg(src='/img/addEventImg.png', alt='AddEvent')
         .caption
           b#eventTitle [Add Event]
-        img#eventImg(src='/img/addEventImg.png', alt='AddEvent')
   .col-sm-6.col-md-3(ng-repeat='event in events')
     .thumbnail.tile.tile-medium
       a(href='viewEvent/{{event._id}}')
-        .caption
-          b#eventTitle {{event.eventName}}
         img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
         img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
         img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
         img#eventImg(ng-show="event.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
         img#eventImg(ng-show="event.eventType=='Other'",src='/img/other.png', alt='other')
+        .caption
+          b#eventTitle {{event.eventName}}
   
