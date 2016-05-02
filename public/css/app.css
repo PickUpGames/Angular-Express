@@ -13,7 +13,18 @@
 }
 
 
+.jumbotron{
+    position:fixed;
+    bottom:0;
+    left:-25px;
+    background-color:rgba(2, 2, 2, 0.00) !important;
+    width:15%;
+    height:150px;
+    margin-bottom:2.75% !important;
+    text-align:center !important;
+    z-index:1000;
 
+}
 #form {
     width: 40%;
     margin: 0 30%; 
@@ -55,7 +66,7 @@ body {
 }
 #mainContainer {
 	background-color: rgba(0, 0, 0, 0.18) !important;   
-	height:60em;
+	height:100vh;
 
 }
 .navbar {
