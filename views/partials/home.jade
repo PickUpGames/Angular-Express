@@ -1,7 +1,10 @@
-
 .jumbotron.text-center
-  h1(ng-show='!user') <a href = '/register'>Signup</a> to start attending/hosting events!
+  h1(ng-show='!user')
+    a(href='/register') Signup
+    |  to start attending/hosting events!
   h1(ng-show='user && !eventList.length && !joinedEvents.length') Add some preferences in your Profile to get recommendations
+  br
+  img(src='../img/home_bg.png')
 #pageName.jumbotron.text-center
   h1 Home
 .col-sm-1.col-md-2
