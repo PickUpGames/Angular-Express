@@ -1,16 +1,17 @@
 /* app css stylesheet */
 #eventImg{
- background-color: rgba(42, 78, 110, 0.60);
  max-width:100%;
  max-height:100%;
+  background-color: rgba(42, 78, 110, 0.4);
+
+ 
 }
 
 #eventImg:hover{
- -moz-box-shadow: 0 10px 10px #000; 
- -webkit-box-shadow: 0 10px 10px rgba(42, 78, 110, 0.4); 
- box-shadow: 0 10px 10px rgba(42, 78, 110, 0.4);
- background-color: rgba(42, 78, 110, 0.4);
+  background-color: rgba(42, 78, 110, 0.60);
+
 }
+
 
 
 #form {
@@ -46,17 +47,23 @@
 }
 
 body {
-    background-color: lightblue !important;
+    background-color: white !important;
 	max-width:100%;
 	max-height:100%;
     margin-bottom: 50px !important;
     margin-top: 50px !important;
 }
-
-.jumbotron {
+#mainContainer {
 	background-color: rgba(42, 78, 110, 0.24) !important;   
-	
+	height:60em;
+	border: solid 1px rgba(42, 78, 110, 0.24) !important;
+
 }
+.navbar {
+	margin-bottom:0px !important;
+	border-radius: 0px !important;
+}
+
 
 #view > div.col-sm-6.col-md-3.ng-scope > div{
 	border: 1px solid rgba(221, 221, 221, 0);

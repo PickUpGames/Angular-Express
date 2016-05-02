@@ -1,31 +1,26 @@
-.jumbotron.text-center
-  h1(ng-show="tagline") {{tagline}}!
-  h1(ng-show="!tagline") Please login to see recommended events.
-
-.col-sm-1.col-md-2
-.col-sm-10.col-md-8
-
-  h1(ng-show="user && !eventList.length && !joinedEvents.length") Add some preferences in your Profile to get recommendations. 
-
-  .col-sm-6.col-md-3(ng-repeat='joined in joinedEvents')
-    #joined.thumbnail.tile.tile-medium
-      a(href='viewEvent/{{joined._id}}')
-        .caption
-          b#eventTitle {{joined.eventName}}
-        img#eventImg(ng-show="joined.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
-        img#eventImg(ng-show="joined.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
-        img#eventImg(ng-show="joined.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
-        img#eventImg(ng-show="joined.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
-        img#eventImg(ng-show="joined.eventType=='Other'",src='/img/other.png', alt='other')
-  .col-sm-6.col-md-3(ng-repeat='event in eventList')
-    .thumbnail.tile.tile-medium
-      a(href='viewEvent/{{event._id}}')
-        .caption
-          b#eventTitle {{event.eventName}}
-        img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
-        img#eventImg(ng-show="event.eventType=='Indoor Sport'",src='/img/indoor.png', alt='Indoor')
-        img#eventImg(ng-show="event.eventType=='Indoor Game'",src='/img/board.png', alt='Games')
-        img#eventImg(ng-show="event.eventType=='Computer Game'",src='/img/PC.png', alt='PC')
-        img#eventImg(ng-show="event.eventType=='Other'",src='/img/other.png', alt='other')
-  
-  
+#mainContainer.container
+  .jumbotron.text-center
+    h1 testing
+  .col-sm-1.col-md-2
+  .col-sm-10.col-md-8
+    h1(ng-show='user && !eventList.length && !joinedEvents.length') Add some preferences in your Profile to get recommendations. 
+    .col-sm-6.col-md-3(ng-repeat='joined in joinedEvents')
+      #joined.thumbnail.tile.tile-medium
+        a(href='viewEvent/{{joined._id}}')
+          .caption
+            b {{joined.eventName}}
+          img#eventImg(ng-show="joined.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
+          img#eventImg(ng-show="joined.eventType=='Indoor Sport'", src='/img/indoor.png', alt='Indoor')
+          img#eventImg(ng-show="joined.eventType=='Indoor Game'", src='/img/board.png', alt='Games')
+          img#eventImg(ng-show="joined.eventType=='Computer Game'", src='/img/PC.png', alt='PC')
+          img#eventImg(ng-show="joined.eventType=='Other'", src='/img/other.png', alt='other')
+    .col-sm-6.col-md-3(ng-repeat='event in eventList')
+      .thumbnail.tile.tile-medium
+        a(href='viewEvent/{{event._id}}')
+          .caption
+            b {{event.eventName}}
+          img#eventImg(ng-show="event.eventType=='Outdoor Sport'", src='/img/sports.png', alt='Sports')
+          img#eventImg(ng-show="event.eventType=='Indoor Sport'", src='/img/indoor.png', alt='Indoor')
+          img#eventImg(ng-show="event.eventType=='Indoor Game'", src='/img/board.png', alt='Games')
+          img#eventImg(ng-show="event.eventType=='Computer Game'", src='/img/PC.png', alt='PC')
+          img#eventImg(ng-show="event.eventType=='Other'", src='/img/other.png', alt='other')
