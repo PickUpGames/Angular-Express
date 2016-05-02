@@ -1,9 +1,11 @@
 
+.jumbotron.text-center
+  h1(ng-show='!user') <a href = '/register'>Signup</a> to start attending/hosting events!
+  h1(ng-show='user && !eventList.length && !joinedEvents.length') Add some preferences in your Profile to get recommendations
 #pageName.jumbotron.text-center
   h1 Home
 .col-sm-1.col-md-2
 .col-sm-10.col-md-8
-  h1(ng-show='user && !eventList.length && !joinedEvents.length') Add some preferences in your Profile to get recommendations. 
   .col-sm-6.col-md-3(ng-repeat='joined in joinedEvents')
     #joined.thumbnail.tile.tile-medium
       a(href='viewEvent/{{joined._id}}')

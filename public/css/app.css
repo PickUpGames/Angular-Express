@@ -23,6 +23,7 @@
     text-align:center !important;
     z-index:1000;
     padding:0;
+    top:30px;
 
 }
 #form {
@@ -68,6 +69,7 @@ body {
 	background-color: rgba(211,211,211, 0.33) !important;   
 	height:100vh;
     padding-top:10px;
+    z-index: -1 !important;
 
 }
 .col-md-8
