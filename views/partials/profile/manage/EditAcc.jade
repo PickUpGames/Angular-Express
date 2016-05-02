@@ -28,5 +28,5 @@
     button.btn.btn-success.btn-block(ng-click='EditA()')
       span.glyphicon.glyphicon-ok
       |  Edit
-    .alert.alert-danger(ng-show='status=="Username already taken."') {{status}}
-    .alert.alert-success(ng-show='status && status!="Username already taken."') {{status}}
+    .alert.alert-danger(ng-show='choice=="editA" && status=="Username already taken."') {{status}}
+    .alert.alert-success(ng-show='choice=="editA" && status && status!="Username already taken."') {{status}}

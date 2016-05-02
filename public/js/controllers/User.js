@@ -51,10 +51,15 @@ function ProfileCtrl($scope, $http, $location) {
   
   $scope.EditA = function ()
   {
+    if (!isNaN($scope.form.location))
+    {
     $http.put('/api/profile/A', $scope.form).
       success(function(res) {
         $scope.status= res.status;
       });
+    }
+    else
+      {$scope.status = "Location must be a number.";}
   };
 
   $scope.EditP = function ()
@@ -64,7 +69,7 @@ function ProfileCtrl($scope, $http, $location) {
     console.log($scope.tags)
     $http.put('/api/profile/P', $scope.tags).
       success(function(res) {
-        $scope.status= res.status;
+        $scope.statusp= res.status;
         $scope.newTag = [];
       });
   };
