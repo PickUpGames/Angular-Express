@@ -1,3 +1,4 @@
+//Login Page
 function LoginCtrl($scope, $http, $location) {
   $scope.form = {};
   $scope.error= "";
@@ -9,13 +10,14 @@ function LoginCtrl($scope, $http, $location) {
   };
 }
 
+//Logout Function
 function LogoutCtrl($http, $location) {
      $http.get('/user/logout').then(
       function(res) {$location.path('/'); location.reload();},
       function(res) {});
 }
 
-
+//Registers our users
 function RegisterCtrl($scope, $http, $location) {
   $scope.form = {};
   $scope.register = function () {
@@ -23,12 +25,13 @@ function RegisterCtrl($scope, $http, $location) {
       function(res) {$location.path('/'); location.reload();},
       function(res) {$scope.error= res.data.error;})
   };
-  $scope.clear = function () {
-    $http.delete('/api/clear').then(
-      function(res) {$location.path('/');}
-    )
-  };
+  // $scope.clear = function () {
+  //   $http.delete('/api/clear').then(
+  //     function(res) {$location.path('/');}
+  //   )
+  // };
 }
+// returns Profile information to client and handles Edit Request
 function ProfileCtrl($scope, $http, $location) {
   //get user data
   
@@ -48,7 +51,7 @@ function ProfileCtrl($scope, $http, $location) {
      }
   ); 
 
-  
+  //Edit Account information
   $scope.EditA = function ()
   {
     if (!isNaN($scope.form.location))
@@ -61,7 +64,7 @@ function ProfileCtrl($scope, $http, $location) {
     else
       {$scope.status = "Location must be a number.";}
   };
-
+  //Edit Preference tags
   $scope.EditP = function ()
   {
 
@@ -73,7 +76,7 @@ function ProfileCtrl($scope, $http, $location) {
         $scope.newTag = [];
       });
   };
-
+  //Delete Preference tags
   $scope.close = function(E)
   {
     console.log(E);
@@ -89,8 +92,10 @@ function ProfileCtrl($scope, $http, $location) {
 
 }
 
+//Handles our Contact Page
 function ContactCtrl($scope, $http, $location, $timeout) {
 
+  //Request server to send a message
   $scope.sendMail = function () {
             console.log("GOOGO!");
             var data = ({

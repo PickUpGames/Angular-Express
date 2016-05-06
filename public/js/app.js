@@ -1,10 +1,10 @@
-// Declare app level module which depends on filters, and services
-angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives']).
+// Declare app level module 
+angular.module('myApp', []).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider. //all these angular paths are dealt with by the server.js file
       when('/', {
         templateUrl: 'partials/home',
-        controller: IndexCtrl
+        controller: IndexCtrl  //these controllers can be found in the js/controllers folder
       })
       .when('/login', {
         templateUrl: 'user/login',

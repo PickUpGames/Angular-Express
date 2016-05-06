@@ -8,22 +8,23 @@ function IndexCtrl($scope, $http) {
 	$scope.tagline = 'Please login to see recommendations';
 	$http.get('/api/events').success(function(data, status, headers, config){
 		$scope.events = data.events;
-		
+      //intialize our variables		
     	$scope.tagline = 'Welcome, ' + data.user.name + '. Time to play!';
     	$scope.eventList = [];
     	$scope.joinedEvents = [];
+      //loop through events
 		for(var i = 0; i < $scope.events.length; i++)
       	{
-      		// $scope.events[i].img = {'src':'','alt':''};
+      		// Assign a picture to each type of event
       		if ($scope.events[i].eventType == 'Outdoor Sport') { $scope.events[i].src = '/img/sports.png'; $scope.events[i].alt= 'Sports'}
-			        else if ($scope.events[i].eventType == 'Football') { $scope.events[i].src = '/img/football.png'; $scope.events[i].alt= 'Football'}
-      else if ($scope.events[i].eventType == 'Basketball') { $scope.events[i].src = '/img/basketball.png'; $scope.events[i].alt= 'Basketball'}
-      else if ($scope.events[i].eventType == 'Soccer') { $scope.events[i].src = '/img/soccer.png'; $scope.events[i].alt= 'Soccer'}
-      else if ($scope.events[i].eventType == 'Tennis') { $scope.events[i].src = '/img/tennis.png'; $scope.events[i].alt= 'Tennis'}
-      else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
-      else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC2.jpeg'; $scope.events[i].alt= 'PC'}
-      else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
-			// console.log($scope.events[i].src);
+			    else if ($scope.events[i].eventType == 'Football') { $scope.events[i].src = '/img/football.png'; $scope.events[i].alt= 'Football'}
+          else if ($scope.events[i].eventType == 'Basketball') { $scope.events[i].src = '/img/basketball.png'; $scope.events[i].alt= 'Basketball'}
+          else if ($scope.events[i].eventType == 'Soccer') { $scope.events[i].src = '/img/soccer.png'; $scope.events[i].alt= 'Soccer'}
+          else if ($scope.events[i].eventType == 'Tennis') { $scope.events[i].src = '/img/tennis.png'; $scope.events[i].alt= 'Tennis'}
+          else if ($scope.events[i].eventType == 'Indoor Game') { $scope.events[i].src = '/img/board.png'; $scope.events[i].alt= 'Game'}
+          else if ($scope.events[i].eventType == 'Computer Game') { $scope.events[i].src = '/img/PC2.jpeg'; $scope.events[i].alt= 'PC'}
+          else if ($scope.events[i].eventType == 'Other') { $scope.events[i].src = '/img/other.png'; $scope.events[i].alt= 'Other'}
+			   // console.log($scope.events[i].src);
         	if(data.user.regEvents.indexOf($scope.events[i]._id.toString()) != -1)
         	{
         		$scope.events[i].eventName = $scope.events[i].eventName.substr(0, 12) + '...';
@@ -58,15 +59,16 @@ function IndexCtrl($scope, $http) {
 }
 
 
-
+//handles our Search page
 function SearchCtrl($scope, $http) {
     $http.get('/api/events').success(function(data, status, headers, config){
     $scope.events = data.events;
     for (var i=0; i< $scope.events.length; i++)
     {
+      // Assign a picture to each type of event
     	$scope.events[i].eventName = $scope.events[i].eventName.substr(0, 12) + '..';
     	if ($scope.events[i].eventType == 'Outdoor Sport') { $scope.events[i].src = '/img/sports.png'; $scope.events[i].alt= 'Sports'}
-	  else if ($scope.events[i].eventType == 'Football') { $scope.events[i].src = '/img/football.png'; $scope.events[i].alt= 'Football'}
+	    else if ($scope.events[i].eventType == 'Football') { $scope.events[i].src = '/img/football.png'; $scope.events[i].alt= 'Football'}
       else if ($scope.events[i].eventType == 'Basketball') { $scope.events[i].src = '/img/basketball.png'; $scope.events[i].alt= 'Basketball'}
       else if ($scope.events[i].eventType == 'Soccer') { $scope.events[i].src = '/img/soccer.png'; $scope.events[i].alt= 'Soccer'}
       else if ($scope.events[i].eventType == 'Tennis') { $scope.events[i].src = '/img/tennis.png'; $scope.events[i].alt= 'Tennis'}
@@ -76,15 +78,12 @@ function SearchCtrl($scope, $http) {
     }
     $scope.predicate = 'eventDate';
     $scope.reverse = true;
+
+    //handles the filtering and ordering 
     $scope.order = function(predicate) {
       $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
       $scope.predicate = predicate;
     };
   });
-
-}
-
-
-function ImageCtrl($scope){
 
 }

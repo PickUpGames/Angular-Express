@@ -59,8 +59,7 @@ function requireUser(req, res, next){
 //  page calls to the routes/index
 //  database calls to routes/api
 
-
-app.get('/', routes.index);
+app.get('/', routes.index);     
 app.get('/partials/home', routes.home);
 app.get('/partials/search', routes.search);
 app.get('/profile/view', requireUser, routes.view);
@@ -82,6 +81,7 @@ app.post('/api/comment/:id', requireUser, api.comment)
 app.delete('/api/event-cancel/:id', api.cancelEvent); //remove event from user
 
 
+//user account
 app.post('/api/login', api.login);
 app.post('/api/register', api.register)
 app.delete('/api/clear', api.clear)

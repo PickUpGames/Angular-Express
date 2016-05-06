@@ -1,13 +1,12 @@
 /* initialize MongoDatabase */ 
-
 var db = require('../db/config/db.js');
 var mongoose = require('mongoose');
-
+//add in DB models
 require('../db/models/Users');
 var User = mongoose.model('User');
 require('../db/models/Events');
 var Event = mongoose.model('Event');
-
+//connection point for DB to server
 mongoose.connect('mongodb://localhost:27017/users');
 
 
@@ -146,6 +145,7 @@ function createUser(newUser, callback){
   }
 }
 
+//adds a new event to the database
 function createEvent(username, newEvent,callback){
   console.log("EVENTCREATED = "+newEvent.eventName);
   var tag = newEvent.tag.split(',');
@@ -183,7 +183,7 @@ function createEvent(username, newEvent,callback){
 //*********************************************************************************************************
 // 
 
-
+//Logins the user
 exports.login = function(req, res){
   console.log("TRIED TO LOGIN | _id=" + req.body.username + " _pwd=" + req.body.password);
   var username = req.body.username;
@@ -229,13 +229,14 @@ exports.clear = function (req, res) {
     res.json(true);
 };
 
+//returns user information to profile page
 exports.profile = function(req, res){
    User.findOne({username: req.session.username}, function(err, user){
     res.send({ user: user });
    });
 };
 
-
+//modifies user information on profile page
 exports.editprofile = function(req, res){
   var name = req.params.name;
   if (name == "A")
@@ -252,7 +253,7 @@ exports.editprofile = function(req, res){
     });}
 };
 
-
+// Sends a message to developers
 exports.contact = function(req, res){
   var data = req.body;
     // console.log(data);
@@ -276,6 +277,7 @@ exports.contact = function(req, res){
 //_________________________________________________EVENTS___________________________________________________
 //*********************************************************************************************************
 // GET
+//returns all event
 exports.events = function (req, res) {
 /* MongoDB */
   Event.find({}, function(err, db){
@@ -295,6 +297,7 @@ exports.events = function (req, res) {
   }); 
 };
 
+//returns a single event that was requested
 exports.event = function (req, res) {
 /* MongoDB */
   var id = req.params.id
@@ -314,7 +317,7 @@ exports.event = function (req, res) {
 
 
 // POST
-
+//adds an event
 exports.addEvent = function (req, res) {
 
   if(req.user){
@@ -332,6 +335,7 @@ exports.addEvent = function (req, res) {
 
 };
 
+// allows he user to attend an event
 exports.attendEvent = function (req, res) {
   var id = req.params.id
   if (id) {
@@ -383,7 +387,8 @@ exports.cancelEvent = function (req, res) {
   }
 };
 
-
+// commenting import and export to database. 
+// also updates the user with the latest comments when submitted
 exports.comment = function (req, res) {
   var id = req.params.id
   if (id) {
